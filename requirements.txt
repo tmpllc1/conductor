@@ -1,0 +1,8 @@
+anthropic
+python-telegram-bot
+httpx
+pydantic
+apscheduler
+presidio-analyzer
+presidio-anonymizer
+sops
