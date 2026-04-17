@@ -1,0 +1,32 @@
+{
+  "overall_status": "warning",
+  "checks": [
+    {
+      "check_name": "s.347 Criminal Code EAR",
+      "category": "Criminal Code",
+      "status": "clear",
+      "detail": "EAR calculated at 13.2%, well below the 35% s.347 threshold.",
+      "action_required": null
+    },
+    {
+      "check_name": "BCFSA Pre-Funding Conditions",
+      "category": "BCFSA",
+      "status": "warning",
+      "detail": "Appraisal is 7 months old; BCFSA expects pre-funding appraisal refresh within 6 months.",
+      "action_required": "Obtain refreshed appraisal before funding"
+    },
+    {
+      "check_name": "FINTRAC KYC",
+      "category": "AML/KYC",
+      "status": "clear",
+      "detail": "Corporate borrower KYC package complete. L0 Human Only verification required at funding.",
+      "action_required": null
+    }
+  ],
+  "bcfsa_disclosure_required": true,
+  "bcfsa_notes": [],
+  "aml_flags": [],
+  "kyc_checklist_gaps": [],
+  "suspicious_transaction_indicators": [],
+  "suitability_concerns": []
+}

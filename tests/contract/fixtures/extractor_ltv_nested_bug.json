@@ -1,0 +1,25 @@
+{
+  "__doc__": "NEGATIVE fixture — pre-fix bug where the extractor emitted ltv nested under calculated_fields instead of at the top level. Pydantic (ltv required at top level) and the JS mirror (top-level + anti-nesting check) must reject it.",
+  "borrower": {
+    "name": "Acme Holdings Ltd",
+    "is_corporation": true
+  },
+  "co_borrowers": [],
+  "property": {
+    "address": "123 Main St, Vancouver, BC",
+    "property_type": "residential",
+    "appraised_value": 1200000
+  },
+  "loan": {
+    "requested_amount": 800000,
+    "position": "first"
+  },
+  "exit_strategy": "refinance",
+  "exit_strategy_details": "Borrower intends to refinance to a conventional lender within 12 months.",
+  "calculated_fields": {
+    "ltv": 66.67
+  },
+  "documents_processed": ["application", "appraisal"],
+  "data_gaps": [],
+  "confidence_notes": []
+}

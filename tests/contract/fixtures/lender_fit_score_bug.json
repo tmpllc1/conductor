@@ -1,0 +1,14 @@
+{
+  "__doc__": "NEGATIVE fixture — this is the pre-fix bug where the model emitted 'fit_score' instead of 'fit'. Both Pydantic (LenderFit enum required) and the JS mirror (VALID_LENDER_FITS lookup) must reject it.",
+  "recommended_lenders": [
+    {
+      "lender_name": "Westcoast Private Mortgage Fund",
+      "fit_score": "strong",
+      "estimated_rate": "9.49-10.49%",
+      "match_reasons": ["BC-based private fund with industrial property specialty"]
+    }
+  ],
+  "deal_positioning": "Position as a short-term bridge for a well-located industrial property.",
+  "rate_expectation": "9.49% to 11.99% range.",
+  "fee_expectation": "1.5-2%."
+}

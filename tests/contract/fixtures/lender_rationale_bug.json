@@ -1,0 +1,14 @@
+{
+  "__doc__": "NEGATIVE fixture — pre-fix bug where the model emitted 'rationale' instead of 'match_reasons'. Pydantic (match_reasons min_length=1 required) and the JS mirror (explicit field-name check) must reject it.",
+  "recommended_lenders": [
+    {
+      "lender_name": "Westcoast Private Mortgage Fund",
+      "fit": "strong",
+      "estimated_rate": "9.49-10.49%",
+      "rationale": "BC-based private fund matches the requested profile."
+    }
+  ],
+  "deal_positioning": "Position as a short-term bridge for a well-located industrial property.",
+  "rate_expectation": "9.49% to 11.99% range.",
+  "fee_expectation": "1.5-2%."
+}

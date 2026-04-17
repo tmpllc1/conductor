@@ -1,0 +1,28 @@
+{
+  "borrower": {
+    "name": "Acme Holdings Ltd",
+    "is_corporation": true,
+    "credit_score": 720,
+    "income_verified": true
+  },
+  "co_borrowers": [],
+  "property": {
+    "address": "123 Main St, Vancouver, BC",
+    "property_type": "residential",
+    "appraised_value": 1200000
+  },
+  "loan": {
+    "purpose": "refinance",
+    "requested_amount": 800000,
+    "mortgage_position": 1,
+    "term_months": 12,
+    "interest_only": true
+  },
+  "exit_strategy": "refinance_conventional",
+  "exit_strategy_details": "Borrower intends to refinance to a conventional lender within 12 months after stabilizing rental income.",
+  "ltv": 66.67,
+  "combined_ltv": 66.67,
+  "documents_processed": ["application", "appraisal"],
+  "data_gaps": [],
+  "confidence_notes": []
+}

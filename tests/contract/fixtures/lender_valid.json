@@ -1,0 +1,30 @@
+{
+  "recommended_lenders": [
+    {
+      "lender_name": "Westcoast Private Mortgage Fund",
+      "fit": "strong",
+      "estimated_rate": "9.49-10.49%",
+      "estimated_fee": "1.5-2%",
+      "max_ltv": 70.0,
+      "term_range": "12 months",
+      "match_reasons": [
+        "BC-based private fund with industrial property specialty",
+        "Rate band matches borrower tolerance"
+      ],
+      "concerns": []
+    },
+    {
+      "lender_name": "Pacific Bridge Capital",
+      "fit": "moderate",
+      "estimated_rate": "10.49-11.99%",
+      "estimated_fee": "2%",
+      "max_ltv": 65.0,
+      "term_range": "6-12 months",
+      "match_reasons": ["Comfortable with corporate borrowers", "Fast funding timeline"],
+      "concerns": ["LTV ceiling below requested"]
+    }
+  ],
+  "deal_positioning": "Position as a short-term bridge for a well-located industrial property with a clear refinance exit within 12 months.",
+  "rate_expectation": "9.49% to 11.99% range depending on lender appetite.",
+  "fee_expectation": "Lender fee 1.5-2% plus broker fee 1%."
+}
