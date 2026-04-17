@@ -1,0 +1,1389 @@
+[
+  {
+    "deal_id": "GT-001",
+    "deal_name": "Curkovic Holdings Ltd. \u2014 7406 Conway Avenue",
+    "raw_outputs": {
+      "screener": {
+        "verdict": "proceed",
+        "reason": "Valid mortgage deal submission: industrial property refinance + equity take-out. Multiple red flags and missing verifications noted for Stage 2 analysis.",
+        "borrower_name": "Curkovic Holdings Ltd. (personal guarantee: Ante 'Tony' Curkovic)",
+        "property_address": "Burnaby, BC (Edmonds / South Burnaby industrial corridor)",
+        "estimated_loan_amount": 2265000,
+        "estimated_ltv": 67.41,
+        "document_types_found": [
+          "application",
+          "appraisal",
+          "credit_bureau",
+          "financial_statements",
+          "broker_notes"
+        ],
+        "missing_critical_docs": [
+          "title_search",
+          "current_credit_bureau",
+          "corporate_registration_confirmation",
+          "civil_criminal_search",
+          "ppsa_search",
+          "bankruptcy_search"
+        ],
+        "red_flags": [
+          "Credit bureau stale (24 months old as of analysis date)",
+          "Property-only DSCR critically low (0.45-0.48x) \u2014 deal heavily dependent on business income",
+          "Occupancy discrepancy: multiple businesses at address (Hanok Food Group, Sungiven Foods signage) vs. stated single tenant",
+          "Building area discrepancy: 5,268 SF (BC Assessment) vs. 6,000 SF (file)",
+          "Undisclosed debts on AMEC balance sheet: RBC LOC $180K, Vault Financial Corp $110K, CIBC Visa $168K",
+          "Undisclosed Dalma Products Ltd. entity \u2014 Curkovic officer/director of separate food distribution company",
+          "AMEC rent spike Jan-Feb ($2,300 to $23,900) \u2014 unexplained volatility",
+          "Lite Access Technologies sale-and-buyback cycle 2021-2022 ($500K sale + $180K debt forgiveness) \u2014 complex capital structure",
+          "Broker 'shortfall' reference initially unclear (later clarified as debt forgiveness, not default)",
+          "Small-bay Burnaby industrial market softening: 4.1% vacancy, 12 consecutive quarters rising",
+          "Building: 1987-built, pre-modern seismic code",
+          "Corporate registration (Curkovic Holdings Ltd.) unconfirmed",
+          "Vault Financial Corp connection flagged for FINTRAC source-of-funds verification",
+          "AMEC operating income verification dependent on equipment lease deduction ($352K/yr) \u2014 critical to DSCR calculation"
+        ],
+        "property_type": "industrial",
+        "loan_purpose": "refinance|equity_takeout",
+        "exit_strategy_summary": "Primary: refinance at lease renewal (market rate); Secondary: AMEC operating income paydown and sale of operating company; Tertiary: property sale (not preferred). Business-income-dependent exit; property-only cash flow insufficient."
+      },
+      "extractor": {
+        "borrower": {
+          "name": "Curkovic Holdings Ltd.",
+          "is_corporation": true,
+          "credit_score": 687,
+          "credit_score_note": "Equifax Beacon \u2014 April 2024; approximately 24 months stale at time of analysis",
+          "income_type": "self_employed",
+          "income_source_detail": "Self-employed via operating company (AMEC Cutting & Coring Ltd.) + rental income from subject property",
+          "sin": "[SIN-REDACTED]",
+          "dob": "[DOB-REDACTED]",
+          "undisclosed_entities": [
+            "Dalma Products Ltd. \u2014 Ante Curkovic listed as officer/director of separate food distribution company; not disclosed in initial submission"
+          ]
+        },
+        "co_borrowers": [
+          {
+            "name": "Ante 'Tony' Curkovic",
+            "role": "personal_guarantor",
+            "is_corporation": false,
+            "sin": "[SIN-REDACTED]",
+            "dob": "[DOB-REDACTED]"
+          }
+        ],
+        "property": {
+          "address": "Burnaby, BC \u2014 Edmonds / South Burnaby industrial corridor",
+          "property_type": "industrial",
+          "property_subtype": "Warehouse/Storage \u2014 M2 General Industrial, 3-storey",
+          "year_built": 1987,
+          "building_area_file_sf": 6000,
+          "building_area_bc_assessment_sf": 5268,
+          "appraised_value": 3360000,
+          "bc_assessment_value": 3220000,
+          "purchase_price": null,
+          "zoning": "M2 General Industrial",
+          "occupancy_stated": "Single tenant \u2014 Sungiven Foods",
+          "occupancy_discrepancy": "Hanok Food Group signage and evidence of multiple businesses operating at address; conflicts with stated sole-tenant occupancy",
+          "seismic_risk": "Elevated \u2014 1987-built, pre-modern seismic code",
+          "environmental_notes": null,
+          "title_search_provided": false
+        },
+        "loan": {
+          "requested_amount": 2265000,
+          "purpose": "refinance_and_equity_takeout",
+          "purpose_detail": "Payout BlueShore Financial and Cambridge Mortgage Corp first mortgages; working capital injection to AMEC Cutting & Coring Ltd.",
+          "term_months": 12,
+          "amortization_months": null,
+          "rate": null,
+          "lender_fee": null,
+          "broker_fee": null,
+          "existing_mortgages": [
+            {
+              "lender": "BlueShore Financial",
+              "position": "first",
+              "balance": null,
+              "note": "To be paid out on funding"
+            },
+            {
+              "lender": "Cambridge Mortgage Corp",
+              "position": "first",
+              "note": "To be paid out on funding; two first mortgages noted \u2014 position priority to be confirmed on title search",
+              "balance": null
+            }
+          ],
+          "undisclosed_debts_flagged": [
+            {
+              "creditor": "RBC",
+              "type": "line_of_credit",
+              "balance": 180000,
+              "entity": "AMEC Cutting & Coring Ltd."
+            },
+            {
+              "creditor": "Vault Financial Corp",
+              "type": "unknown",
+              "balance": 110000,
+              "entity": "unknown \u2014 FINTRAC source-of-funds flag"
+            },
+            {
+              "creditor": "CIBC",
+              "type": "visa_credit_card",
+              "balance": 168000,
+              "entity": "unknown"
+            }
+          ]
+        },
+        "ltv": 67.41,
+        "calculated_fields": {
+          "ltv_basis": "appraised_value",
+          "bc_assessment_ltv": 70.34,
+          "purchase_price_ltv": null,
+          "combined_ltv": null,
+          "combined_ltv_note": "Existing mortgage balances for BlueShore Financial and Cambridge Mortgage Corp not provided in file; combined LTV cannot be calculated",
+          "property_only_dscr": "0.45\u20130.48x",
+          "combined_dscr_post_clarification": "2.0\u20132.2x",
+          "combined_dscr_note": "Combined DSCR revised upward after broker clarification confirming AMEC profits reported NET of all operating expenses including ~$352K/yr equipment leases. Deal remains business-income-dependent.",
+          "gds_ratio": null,
+          "tds_ratio": null,
+          "ratio_gap_note": "GDS/TDS cannot be calculated \u2014 individual monthly gross income and total monthly housing cost figures not provided in file documents",
+          "s347_ear_check": "Clear at all modeled scenarios"
+        },
+        "exit_strategy": {
+          "primary": "Refinance at lease renewal at market rate",
+          "secondary": "AMEC Cutting & Coring Ltd. operating income paydown; sale of AMEC operating company to a buyer",
+          "tertiary": "Property sale \u2014 noted as not preferred by borrower",
+          "exit_risk_note": "Exit strategy is heavily business-income-dependent. Property-only cash flow (DSCR 0.45\u20130.48x) is insufficient to service debt. Small-bay Burnaby industrial market is softening (4.1% vacancy, rising 12 consecutive quarters), which may compress refinance options at lease renewal."
+        },
+        "operating_company": {
+          "name": "AMEC Cutting & Coring Ltd.",
+          "relationship": "Operating company controlled by Ante Curkovic; occupies / pays rent to Curkovic Holdings Ltd.; source of primary income for debt service",
+          "rent_anomaly": "Rent payments spiked from $2,300 (January) to $23,900 (February) \u2014 unexplained volatility; requires verification",
+          "equipment_lease_annual": 352000,
+          "equipment_lease_note": "Critical to DSCR calculation \u2014 broker confirmed AMEC net income figures are stated AFTER deduction of ~$352K/yr equipment leases",
+          "lite_access_transaction": {
+            "counterparty": "Lite Access Technologies Inc. (TSXV: LTE)",
+            "year_sale": 2021,
+            "year_buyback": 2022,
+            "sale_price": 500000,
+            "buyback_working_capital": 80000,
+            "debt_forgiveness": 180000,
+            "note": "Sale-and-buyback cycle over approximately 15 months. $180K debt forgiveness was from Curkovic Holdings to AMEC at close of Lite Access transaction \u2014 broker clarified this was NOT a mortgage default. Complex capital structure flagged for due diligence."
+          }
+        },
+        "compliance": {
+          "s347_criminal_code_ear": "Clear",
+          "bpcpa_cost_of_credit_disclosure_required": true,
+          "fintrac_flags": [
+            "Lite Access Technologies sale-and-buyback transaction \u2014 source-of-funds verification required",
+            "Vault Financial Corp $110K debt \u2014 source-of-funds and lender identity verification required"
+          ],
+          "bcfsa_registration": "Verifund Capital Corp \u2014 BCFSA registered private mortgage brokerage"
+        },
+        "verification_status": {
+          "title_search": "NOT PROVIDED",
+          "current_credit_bureau": "NOT PROVIDED \u2014 file credit bureau is April 2024 (~24 months stale)",
+          "corporate_registration_curkovic_holdings": "UNCONFIRMED",
+          "cso_civil_search": "NOT COMPLETED",
+          "cso_criminal_search": "NOT COMPLETED",
+          "ppsa_search": "NOT COMPLETED",
+          "osb_bankruptcy_search": "NOT COMPLETED",
+          "building_area_discrepancy_resolved": false
+        },
+        "data_gaps": [
+          "Title search not provided \u2014 encumbrances, registrations, and priority of existing mortgages unknown",
+          "Current credit bureau not provided \u2014 April 2024 bureau is approximately 24 months stale",
+          "Curkovic Holdings Ltd. corporate registration not confirmed",
+          "CSO civil and criminal search not completed",
+          "PPSA search not completed",
+          "OSB bankruptcy search not completed",
+          "Balances on BlueShore Financial and Cambridge Mortgage Corp mortgages not stated \u2014 combined LTV cannot be calculated",
+          "Building area discrepancy unresolved: 5,268 SF (BC Assessment) vs. 6,000 SF (file documents)",
+          "Occupancy discrepancy unresolved: Hanok Food Group and multiple businesses at address vs. stated sole tenant Sungiven Foods",
+          "AMEC rent spike (January $2,300 to February $23,900) \u2014 no explanation provided",
+          "Vault Financial Corp $110K debt \u2014 creditor identity, nature of debt, and security not confirmed",
+          "CIBC Visa $168K \u2014 entity holder not confirmed",
+          "Dalma Products Ltd. \u2014 financial obligations, cross-guarantees, or encumbrances involving Ante Curkovic not disclosed or verified",
+          "Individual monthly gross income figure for Ante Curkovic not isolated \u2014 GDS/TDS ratios cannot be calculated",
+          "Loan rate, lender fee, and broker fee not stated in documents provided",
+          "Amortization schedule not stated",
+          "Environmental assessment or Phase I/II status not referenced in file"
+        ],
+        "red_flags": [
+          "Credit bureau approximately 24 months stale \u2014 current bureau required before commitment",
+          "Property-only DSCR critically low at 0.45\u20130.48x \u2014 deal is entirely business-income-dependent",
+          "Occupancy discrepancy: Hanok Food Group signage and multiple tenants at address vs. stated single tenant Sungiven Foods",
+          "Building area discrepancy: 5,268 SF (BC Assessment) vs. 6,000 SF (file) \u2014 affects per-SF value and appraisal reliability",
+          "Undisclosed debts on AMEC balance sheet: RBC LOC $180K, Vault Financial Corp $110K, CIBC Visa $168K",
+          "Undisclosed Dalma Products Ltd. entity \u2014 Ante Curkovic listed as officer/director; potential cross-liability not assessed",
+          "AMEC rent spike January to February ($2,300 to $23,900) \u2014 unexplained; may indicate rent normalization manipulation",
+          "Lite Access Technologies sale-and-buyback cycle (2021\u20132022): $500K sale + $180K debt forgiveness \u2014 complex capital structure requiring independent verification",
+          "Vault Financial Corp connection \u2014 non-institutional lender; FINTRAC source-of-funds verification required",
+          "Small-bay Burnaby industrial market softening \u2014 4.1% vacancy, rising 12 consecutive quarters; exit via refinance at lease renewal carries market risk",
+          "1987-built building \u2014 pre-modern seismic code; seismic upgrade liability exposure unquantified",
+          "Curkovic Holdings Ltd. corporate registration unconfirmed",
+          "Title search not provided \u2014 cannot confirm priority, encumbrances, or charges",
+          "AMEC operating income DSCR is critically dependent on equipment lease deduction of ~$352K/yr \u2014 if lease treatment changes, DSCR collapses"
+        ],
+        "confidence_notes": "Primary LTV (appraised value $3,360,000): 67.41%. BC Assessment LTV ($3,220,000): 70.34%. No purchase price in file \u2014 purchase-price LTV not applicable. Combined LTV cannot be calculated as existing mortgage balances for BlueShore Financial and Cambridge Mortgage Corp are not provided. DSCR analysis: property-only DSCR 0.45\u20130.48x (insufficient); combined DSCR revised to 2.0\u20132.2x after broker clarification that AMEC net income is stated after ~$352K/yr equipment lease deductions \u2014 this single clarification is material to deal viability and must be independently verified. Broker 'shortfall' reference in email was confirmed as debt forgiveness from Curkovic Holdings to AMEC at Lite Access close, not a mortgage default. Appraised value ($3,360,000) vs. BC Assessment ($3,220,000) discrepancy of $140,000 (4.2%) is within normal range but should be noted alongside unresolved building area discrepancy (5,268 SF vs. 6,000 SF) which may affect appraisal reliability. All extraction based on screener output and submission package documents; no independently verified title, registration, or court search data available at this stage."
+      },
+      "risk": {
+        "overall_rating": "High",
+        "overall_score": 3.45,
+        "risk_factors": [
+          {
+            "factor": "LTV Risk",
+            "rating": "Low-Moderate",
+            "weight": 0.2,
+            "explanation": "Appraised LTV of 67.41% sits in the Low-Moderate band for private lending. BC Assessment LTV of 70.34% is slightly higher but still within acceptable range. Combined LTV cannot be verified due to missing mortgage balances for BlueShore and Cambridge \u2014 this gap alone prevents clean LTV confirmation and is a meaningful structural concern."
+          },
+          {
+            "factor": "Credit Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.15,
+            "explanation": "Beacon 687 at origination is serviceable for private lending, but the bureau is approximately 24 months stale. No current bureau has been provided. A 687 score from April 2024 carries meaningful uncertainty \u2014 undisclosed debts (RBC $180K, Vault $110K, CIBC $168K) may have materially deteriorated the credit profile since then. Rated Moderate-Elevated rather than High because the last known score is above 650, but staleness is a genuine flag."
+          },
+          {
+            "factor": "Exit Strategy Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.2,
+            "explanation": "Primary exit is refinance at lease renewal. Property-only DSCR of 0.45\u20130.48x means no institutional lender will refinance on property cash flow alone. Exit is contingent on AMEC operating income and a functioning lease at renewal \u2014 both carry uncertainty. Small-bay Burnaby industrial vacancy has risen 12 consecutive quarters to 4.1%, compressing refinance options. Secondary exits (AMEC income paydown, business sale) are viable in concept but unvalidated. Property sale is tertiary and not borrower-preferred."
+          },
+          {
+            "factor": "Income and DSCR Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.15,
+            "explanation": "Combined DSCR of 2.0\u20132.2x is adequate IF broker's clarification on AMEC net income (stated after $352K/yr equipment lease deductions) is independently verified. Property-only DSCR of 0.45\u20130.48x is critically insufficient. The entire income underwrite rests on a single broker clarification that has not been independently confirmed. AMEC rent spike ($2,300 to $23,900 in one month) is unexplained and raises normalization concerns."
+          },
+          {
+            "factor": "Property Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.1,
+            "explanation": "M2 industrial warehouse in Burnaby's Edmonds corridor is a functional asset class for private lending. However: 1987 construction predates modern seismic code with unquantified upgrade exposure; building area discrepancy (5,268 SF BC Assessment vs. 6,000 SF file) is unresolved and undermines appraisal reliability; occupancy discrepancy (Sungiven Foods stated vs. Hanok Food Group signage and multiple businesses observed) is a material factual misrepresentation in the submission."
+          },
+          {
+            "factor": "Disclosure and Transparency Risk",
+            "rating": "High",
+            "weight": 0.1,
+            "explanation": "Multiple undisclosed liabilities: RBC LOC $180K, Vault Financial Corp $110K (FINTRAC-flagged), CIBC Visa $168K. Undisclosed entity Dalma Products Ltd. with Ante Curkovic as officer/director \u2014 cross-liability not assessed. Lite Access sale-and-buyback cycle ($500K sale, $180K debt forgiveness, buyback within 15 months) is a complex capital structure requiring independent verification. Pattern of non-disclosure is a qualitative aggravating factor."
+          },
+          {
+            "factor": "Title and Legal Verification Risk",
+            "rating": "High",
+            "weight": 0.05,
+            "explanation": "No title search provided. Two first mortgages (BlueShore and Cambridge) with unknown balances \u2014 priority and combined LTV unverifiable. No PPSA, CSO civil, CSO criminal, or OSB bankruptcy search completed. Curkovic Holdings corporate registration unconfirmed. This cluster of missing searches is abnormal even for private lending at this deal size."
+          },
+          {
+            "factor": "FINTRAC and Compliance Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.05,
+            "explanation": "Two active FINTRAC source-of-funds flags: Lite Access Technologies transaction and Vault Financial Corp $110K debt. Non-institutional lender involvement (Vault) is a standard FINTRAC trigger. S.347 Criminal Code EAR check is clear. BPCPA cost-of-credit disclosure required. Compliance risk is elevated but not unmanageable \u2014 flags are known and traceable rather than concealed."
+          }
+        ],
+        "mitigating_factors": [
+          "Appraised LTV of 67.41% provides a meaningful equity cushion of approximately $1,095,000 above the loan amount on a $3,360,000 appraised value",
+          "BC Assessment LTV of 70.34% broadly corroborates appraised value \u2014 appraisal-to-assessment variance of 4.2% is within normal range",
+          "Personal guaranty from Ante Curkovic (individual) adds recourse beyond the corporate borrower shell",
+          "Combined DSCR of 2.0\u20132.2x (post-broker clarification) is strong if independently verified \u2014 suggests meaningful debt service capacity from operating company",
+          "AMEC Cutting & Coring Ltd. appears to be an established operating business with identifiable revenue and equipment lease obligations, not a shell",
+          "Multiple exit pathways exist in concept: refinance at lease renewal, AMEC income paydown, business sale, and property sale as backstop",
+          "Burnaby Edmonds M2 industrial corridor is a liquid asset class with identifiable buyer pool even in a softening market",
+          "S.347 Criminal Code EAR check is clear across all modeled rate scenarios",
+          "Broker confirmed debt forgiveness ($180K) was an intercompany transaction at Lite Access close, not a mortgage default \u2014 reduces one specific red flag",
+          "Short 12-month term limits lender exposure horizon"
+        ],
+        "aggravating_factors": [
+          "Credit bureau approximately 24 months stale \u2014 current creditworthiness unknown; undisclosed debts may have further deteriorated profile",
+          "Combined LTV unverifiable \u2014 existing mortgage balances for BlueShore Financial and Cambridge Mortgage Corp not provided",
+          "Property-only DSCR critically low at 0.45\u20130.48x \u2014 deal is entirely business-income-dependent with no property-level debt service support",
+          "Occupancy discrepancy: Hanok Food Group signage and multiple tenants observed vs. stated sole tenant Sungiven Foods \u2014 factual misrepresentation in submission",
+          "Building area discrepancy (5,268 SF vs. 6,000 SF) unresolved \u2014 undermines appraisal per-SF reliability",
+          "Three undisclosed liabilities totaling approximately $458,000 (RBC LOC $180K, Vault Financial $110K, CIBC Visa $168K)",
+          "Undisclosed Dalma Products Ltd. entity \u2014 Ante Curkovic as officer/director; cross-liability and cross-guarantee exposure unquantified",
+          "AMEC rent spike from $2,300 to $23,900 in one month unexplained \u2014 potential income normalization manipulation",
+          "Vault Financial Corp $110K \u2014 non-institutional creditor, FINTRAC-flagged, identity and security nature unknown",
+          "Lite Access Technologies sale-and-buyback cycle \u2014 complex capital structure not independently verified",
+          "Small-bay Burnaby industrial vacancy rising 12 consecutive quarters \u2014 primary exit strategy carries market timing risk",
+          "1987-built building, pre-modern seismic code \u2014 seismic upgrade liability unquantified; no Phase I/II environmental referenced",
+          "No title search, no PPSA, no CSO civil/criminal, no OSB bankruptcy search completed",
+          "Combined DSCR of 2.0\u20132.2x rests entirely on a single unverified broker clarification regarding $352K/yr equipment lease treatment"
+        ],
+        "ltv_risk": "Low-Moderate",
+        "credit_risk": "Moderate-Elevated",
+        "exit_strategy_risk": "Moderate-Elevated",
+        "income_risk": "Moderate-Elevated",
+        "property_risk": "Moderate-Elevated",
+        "risk_summary": "Curkovic Holdings Ltd. is requesting a $2,265,000 refinance and equity takeout secured by a 1987-built M2 industrial warehouse in Burnaby's Edmonds corridor, appraised at $3,360,000 (LTV 67.41%). The headline LTV is acceptable for private lending and the equity cushion of approximately $1,095,000 is a meaningful structural mitigant. However, the deal carries a significant concentration of unresolved disclosure, verification, and cash flow risks that collectively push the rating into the High tier.\n\nThe most material concern is the complete absence of property-level debt service coverage: DSCR on rental income alone is 0.45\u20130.48x, making this deal entirely dependent on AMEC Cutting & Coring Ltd. operating income. The combined DSCR of 2.0\u20132.2x \u2014 if verified \u2014 is adequate, but this figure rests on a single broker clarification that AMEC net income is stated after $352,000 in annual equipment lease deductions. This clarification has not been independently confirmed, and if the treatment changes, the income underwrite collapses.\n\nThe submission contains multiple non-disclosure concerns: three previously undisclosed liabilities totaling approximately $458,000 (RBC LOC $180K, Vault Financial Corp $110K flagged for FINTRAC source-of-funds, CIBC Visa $168K), an undisclosed entity (Dalma Products Ltd.) in which Ante Curkovic holds an officer/director role, and an anomalous AMEC rent spike from $2,300 to $23,900 in a single month with no explanation provided. The occupancy represented in the submission (sole tenant Sungiven Foods) conflicts with on-site signage indicating Hanok Food Group and evidence of multiple businesses operating at the address \u2014 a factual discrepancy that requires resolution before commitment.\n\nVerification gaps are significant for a deal of this size: no title search has been provided, existing mortgage balances for BlueShore Financial and Cambridge Mortgage Corp are unstated (combined LTV cannot be confirmed), the credit bureau is approximately 24 months stale, and no PPSA, CSO civil/criminal, or OSB bankruptcy searches have been completed. A building area discrepancy (5,268 SF BC Assessment vs. 6,000 SF in file documents) remains unresolved and affects per-SF appraisal reliability.\n\nThe primary exit strategy \u2014 refinance at lease renewal \u2014 faces headwinds from a softening small-bay Burnaby industrial market (4.1% vacancy, rising 12 consecutive quarters), and property-only cash flow would not support institutional refinance terms. Secondary exits via AMEC income paydown or business sale are conceivable but unvalidated. The Lite Access Technologies sale-and-buyback transaction (2021\u20132022: $500K sale, $180K debt forgiveness, buyback within 15 months) adds capital structure complexity that requires independent verification.\n\nThis deal is financeable for the right private lender with appropriate conditions precedent, but it should not proceed to commitment until the title search, current credit bureau, PPSA, CSO searches, occupancy clarification, AMEC income verification, Vault Financial identification, and combined LTV calculation are all resolved. The personal guaranty from Ante Curkovic and the equity position provide a floor, but the concentration of unresolved material issues warrants a High risk classification and a meaningfully elevated rate premium.",
+        "recommended_rate_premium_bps": 375,
+        "recommended_conditions": [
+          "Current credit bureau (Equifax and/or TransUnion) for Ante Curkovic obtained within 60 days of commitment \u2014 April 2024 bureau not acceptable for funding",
+          "Full title search completed and reviewed by lender's counsel \u2014 priority of BlueShore Financial and Cambridge Mortgage Corp mortgages confirmed and both paid out on closing",
+          "Confirmed payout statements for BlueShore Financial and Cambridge Mortgage Corp \u2014 combined LTV must be calculated and confirmed below 75% net of payouts",
+          "PPSA search completed \u2014 all registered security interests against Curkovic Holdings Ltd., AMEC Cutting & Coring Ltd., and Ante Curkovic personally to be disclosed and cleared or subordinated",
+          "OSB bankruptcy and insolvency search for Ante Curkovic and Curkovic Holdings Ltd.",
+          "CSO civil and criminal search for Ante Curkovic",
+          "Curkovic Holdings Ltd. corporate registration (BC Registry) confirmed \u2014 certificate of good standing required",
+          "Occupancy discrepancy resolved \u2014 lender to receive written confirmation of tenant identity (Sungiven Foods vs. Hanok Food Group), current executed lease(s), and rent roll; site inspection by lender or appointed agent prior to commitment",
+          "Building area discrepancy (5,268 SF vs. 6,000 SF) resolved in writing \u2014 appraiser to confirm or amend square footage basis; appraisal reliability to be affirmed by lender's review appraiser if discrepancy is material",
+          "AMEC income independently verified \u2014 two most recent years T1 corporate tax returns, NOAs, and financial statements for AMEC Cutting & Coring Ltd.; equipment lease schedules confirming ~$352K/yr deduction; combined DSCR recalculated on verified figures",
+          "AMEC rent spike ($2,300 January to $23,900 February) explained in writing with supporting documentation \u2014 lease amendment, retroactive adjustments, or normalized rent schedule required",
+          "Vault Financial Corp $110K debt \u2014 creditor identity, nature of obligation, and security (if any) registered against subject property or borrower entities confirmed; FINTRAC source-of-funds documentation provided",
+          "Dalma Products Ltd. \u2014 Ante Curkovic's role, any personal guarantees provided, and any financial obligations or encumbrances cross-linked to Curkovic Holdings or subject property fully disclosed and confirmed by borrower's solicitor",
+          "CIBC Visa $168K \u2014 entity holder confirmed; included in TDS calculation",
+          "Lite Access Technologies transaction documentation provided \u2014 sale agreement, buyback agreement, and debt forgiveness records reviewed by lender's counsel to confirm no outstanding claims or recourse obligations",
+          "Phase I Environmental Site Assessment obtained \u2014 1987 M2 industrial site with no environmental reference in file; Phase I required as condition precedent to funding",
+          "Seismic assessment or engineer's letter obtained confirming current structural condition and quantifying (or ruling out) near-term seismic upgrade obligation",
+          "BPCPA cost-of-credit disclosure executed and delivered to borrower prior to commitment",
+          "FINTRAC source-of-funds compliance file completed by Verifund Capital Corp prior to funding \u2014 Lite Access and Vault Financial flags cleared"
+        ]
+      },
+      "lender": {
+        "recommended_lenders": [
+          {
+            "lender_name": "Private Mortgage Investment Fund (BC-Based Industrial Specialist)",
+            "rate": "11.49%",
+            "term": "12 months",
+            "max_ltv": "70%",
+            "fit": "strong",
+            "match_reasons": [
+              "BC-domiciled private fund with established industrial/warehouse collateral appetite in Metro Vancouver and Burnaby corridors",
+              "12-month bridge term aligns with borrower's refinance-at-renewal exit strategy and fund's typical 1-year deployment cycle",
+              "Rate band 11.00-11.99% reflects appropriate 375 bps premium over benchmark for High-risk file with strong equity cushion at 67.41% LTV",
+              "Fund-level underwriting tolerates business-income-dependent DSCR provided operating company financials are verified and personal guaranty is in place",
+              "Experience with dual-mortgage payout structures (BlueShore + Cambridge) common in BC industrial refinance transactions"
+            ]
+          },
+          {
+            "lender_name": "Syndicated MIC (Metro Vancouver Commercial Focus)",
+            "rate": "11.99%",
+            "term": "12 months",
+            "max_ltv": "70%",
+            "fit": "strong",
+            "match_reasons": [
+              "Metro Vancouver commercial MICs routinely lend on M2 industrial assets in Burnaby Edmonds corridor at 65-72% LTV with personal guaranty backstop",
+              "Syndicated structure distributes concentration risk across the $2,265,000 loan amount, reducing single-investor exposure to the elevated disclosure and FINTRAC flags",
+              "12-month term with renewal option allows re-underwriting once occupancy discrepancy, title search, and current credit bureau are resolved post-funding",
+              "MIC regulatory framework requires standardized KYC/AML compliance, aligning with FINTRAC source-of-funds conditions precedent required on this file",
+              "Rate ceiling of 11.99% remains within BC private lending norms and reflects risk-adjusted pricing for High overall rating with Low-Moderate LTV risk"
+            ]
+          },
+          {
+            "lender_name": "Balance Sheet Private Lender (High-Net-Worth Individual or Family Office)",
+            "rate": "12.49%",
+            "term": "12 months",
+            "max_ltv": "68%",
+            "fit": "moderate",
+            "match_reasons": [
+              "Single-investor balance sheet lenders can accommodate elevated due diligence conditions precedent lists (19 items) without committee approval delays, critical given volume of unresolved verification gaps",
+              "Willingness to underwrite on personal guaranty strength and equity position rather than institutional DSCR thresholds accommodates the 0.45-0.48x property-only coverage shortfall",
+              "Rate of 12.49% reflects risk premium for High disclosure risk, stale credit bureau, and FINTRAC flags while remaining below BC Criminal Code S.347 EAR ceiling",
+              "Flexible commitment structure allows conditions precedent to be staged: title search and payout confirmations at funding; AMEC income verification and occupancy resolution as pre-advance requirements"
+            ]
+          },
+          {
+            "lender_name": "Non-Bank Commercial Bridge Lender (BC-Licensed)",
+            "rate": "11.74%",
+            "term": "12 months",
+            "max_ltv": "70%",
+            "fit": "moderate",
+            "match_reasons": [
+              "BC-licensed non-bank bridge lenders with commercial mandates regularly finance 1987-vintage industrial warehouse assets where seismic and environmental assessments are conditions precedent rather than deal-breakers",
+              "Institutional-grade conditions precedent process (Phase I ESA, seismic letter, PPSA, CSO searches) aligns with lender's standard commercial checklist, reducing friction on the 19-condition recommended list",
+              "Loan amount of $2,265,000 sits within typical commercial bridge ticket size of $1.5M-$5.0M for this lender category",
+              "Combined DSCR of 2.0-2.2x post-verification is within underwriting tolerance provided AMEC T1 returns and NOAs independently confirm broker's equipment lease clarification"
+            ]
+          },
+          {
+            "lender_name": "Specialty Risk Private Lender (Complex/Distressed Commercial)",
+            "rate": "13.49%",
+            "term": "12 months",
+            "max_ltv": "65%",
+            "fit": "weak",
+            "match_reasons": [
+              "Last-resort option if disclosure issues (Vault Financial FINTRAC flag, Dalma Products cross-liability, occupancy misrepresentation) cannot be fully resolved prior to commitment and mainstream private lenders decline",
+              "Specialty lenders underwriting complex capital structures (Lite Access sale-and-buyback, dual first mortgage payout, undisclosed entity) charge a meaningful risk premium reflected in 13.49% rate, but have in-house legal capacity to work through the title and PPSA stack",
+              "Maximum LTV of 65% provides additional equity buffer ($2,184,000 ceiling vs. $2,265,000 request) requiring borrower to either reduce loan amount or accept shortfall \u2014 viable only if AMEC working capital injection is partially self-funded",
+              "Engagement conditional on full resolution of all FINTRAC source-of-funds flags and delivery of Phase I ESA prior to any term sheet issuance"
+            ]
+          }
+        ]
+      },
+      "compliance": {
+        "overall_status": "fail",
+        "checks": [
+          {
+            "check_name": "s.347 Criminal Code EAR",
+            "category": "Criminal Code",
+            "status": "warning",
+            "detail": "Loan rate, lender fee, and broker fee are not stated in the file documents. EAR cannot be calculated. Extractor notes 'Clear at all modeled scenarios' but no rate inputs are confirmed. s.347 exemption (commercial loan >$500K to corporation) may apply given borrower is Curkovic Holdings Ltd. (corporation) and loan is $2,265,000; however exemption applicability requires Josh's confirmation. Cannot issue a clear status without confirmed rate and fee inputs.",
+            "action_required": "Josh to confirm: (1) applicable interest rate, lender fee, and broker fee so EAR can be calculated; (2) whether s.347 commercial exemption is being relied upon for this deal. If exemption is relied upon, note on file. If not, EAR must be calculated and confirmed at or below 35% before funding."
+          },
+          {
+            "check_name": "BCFSA Pre-Funding Requirements",
+            "category": "BCFSA",
+            "status": "fail",
+            "detail": "Multiple mandatory pre-funding items are absent or unconfirmed. (1) Title search: NOT PROVIDED \u2014 encumbrances, priority of BlueShore Financial and Cambridge Mortgage Corp first mortgages, and all registered charges are unknown; title search is a non-negotiable pre-funding requirement. (2) Form 9 (Lender Disclosure) or Form 10 (Investor Disclosure): not confirmed in file. (3) Cost of credit disclosure: flagged as required but not confirmed as executed and delivered. (4) KYC documentation: credit bureau is approximately 24 months stale (April 2024); current bureau not provided. (5) Curkovic Holdings Ltd. corporate registration unconfirmed \u2014 BC Registry certificate of good standing not in file. (6) No confirmation of conflict of interest disclosure. (7) Verifund Capital Corp BCFSA registration noted as current but individual broker registration currency not confirmed in file. Title search absence at this deal size ($2,265,000, two existing first mortgages) is a standalone fail condition.",
+            "action_required": "Josh must obtain and review: (1) full title search prior to any commitment or funding; (2) Form 9 or Form 10 executed and on file; (3) cost of credit disclosure executed and delivered to borrower; (4) current credit bureau for Ante Curkovic (within 60 days of commitment); (5) BC Registry certificate of good standing for Curkovic Holdings Ltd.; (6) conflict of interest disclosure if any broker-lender relationship exists; (7) confirm individual broker registration is current and active with BCFSA."
+          },
+          {
+            "check_name": "FINTRAC KYC",
+            "category": "AML",
+            "status": "fail",
+            "detail": "Multiple FINTRAC and KYC deficiencies identified. (1) Vault Financial Corp $110,000 debt: non-institutional creditor, identity unknown, nature of obligation and any registered security unknown \u2014 active FINTRAC source-of-funds flag. (2) Lite Access Technologies sale-and-buyback cycle (2021\u20132022): $500,000 sale plus $180,000 debt forgiveness within approximately 15 months \u2014 complex capital structure; source-of-funds verification required and not completed. (3) Undisclosed entity Dalma Products Ltd.: Ante Curkovic listed as officer/director but not disclosed in initial submission \u2014 beneficial ownership picture is incomplete. (4) Corporate registration for Curkovic Holdings Ltd. unconfirmed \u2014 beneficial ownership cannot be fully verified. (5) AMEC rent spike ($2,300 January to $23,900 February) is unexplained and constitutes an anomalous financial pattern requiring documentation. (6) OSB bankruptcy search, CSO civil search, and CSO criminal search not completed. (7) PPSA search not completed \u2014 undisclosed security interests against borrower entities cannot be ruled out. Two named FINTRAC source-of-funds flags (Vault Financial Corp and Lite Access) remain open and unresolved. L0 Human Only verification required per FINTRAC \u2014 all AML/KYC determinations are Josh's decision.",
+            "action_required": "Josh (L0 Human Only) must: (1) complete FINTRAC source-of-funds file for Vault Financial Corp $110K \u2014 creditor identity, nature of debt, and any security confirmed; (2) complete source-of-funds verification for Lite Access Technologies transaction \u2014 sale agreement, buyback agreement, and debt forgiveness documentation reviewed; (3) obtain full beneficial ownership disclosure for Curkovic Holdings Ltd. including Dalma Products Ltd. connection; (4) obtain explanation and supporting documentation for AMEC rent spike; (5) complete OSB, CSO civil, CSO criminal, and PPSA searches before funding; (6) confirm Curkovic Holdings corporate registration. No funding until FINTRAC SoF flags are cleared by Josh."
+          },
+          {
+            "check_name": "BPCPA Cost of Credit Disclosure",
+            "category": "BPCPA",
+            "status": "warning",
+            "detail": "Borrower is Curkovic Holdings Ltd., a corporation \u2014 BPCPA consumer protection provisions may not apply directly to the corporate borrower. However, personal guarantor Ante Curkovic (individual) is a party to this transaction and BPCPA cost of credit disclosure requirements must be assessed in that context. Extractor confirms BPCPA cost of credit disclosure is required and has not been confirmed as executed and delivered. Loan rate and fees are not stated in the file, so disclosure content cannot be verified as accurate or complete.",
+            "action_required": "Josh to confirm: (1) whether BPCPA applies to this transaction given corporate borrower and individual guarantor structure; (2) cost of credit disclosure is prepared, accurate, and delivered to all applicable parties prior to commitment. Disclosure cannot be completed until rate, lender fee, and broker fee are confirmed."
+          },
+          {
+            "check_name": "Suitability Assessment",
+            "category": "Suitability",
+            "status": "warning",
+            "detail": "Suitability is conditionally viable but materially dependent on unverified inputs. Property-only DSCR of 0.45\u20130.48x is critically insufficient \u2014 the deal cannot be serviced from rental income alone. Combined DSCR of 2.0\u20132.2x (post-broker clarification) is adequate if independently verified, but this figure rests entirely on a single unverified broker clarification that AMEC net income is stated after approximately $352,000 per year in equipment lease deductions. If this treatment is not confirmed, the income underwrite collapses. GDS/TDS ratios cannot be calculated \u2014 individual monthly gross income for Ante Curkovic not isolated in file. Exit strategy is viable in concept (refinance at lease renewal, AMEC income paydown, property sale as backstop) but primary exit faces headwinds from softening small-bay Burnaby industrial market (4.1% vacancy rising 12 consecutive quarters). Loan purpose (refinance and equity takeout with working capital injection to AMEC) is consistent with the borrower's stated business profile. Personal guaranty from Ante Curkovic adds recourse. Appraised LTV of 67.41% provides approximately $1,095,000 equity cushion. Rated warning rather than fail because structural supports exist and combined DSCR is potentially adequate \u2014 suitability is not demonstrably unsuitable, but is unverifiable at current data state.",
+            "action_required": "Josh to verify: (1) AMEC net income independently confirmed via T1 corporate tax returns, NOAs, and financial statements \u2014 $352K/yr equipment lease deduction confirmed on verified figures; (2) combined DSCR recalculated on verified income; (3) current executed lease(s) and rent roll for subject property confirmed; (4) AMEC rent spike explained and documented; (5) exit strategy assessed against verified AMEC financials and current market conditions before commitment."
+          }
+        ],
+        "bcfsa_disclosure_required": true,
+        "bcfsa_notes": [
+          "Form 9 (Lender Disclosure) or Form 10 (Investor Disclosure) required \u2014 not confirmed as executed and on file",
+          "Cost of credit disclosure required under BPCPA and BCFSA \u2014 not confirmed as executed and delivered to borrower",
+          "Title search mandatory before funding \u2014 not provided; two existing first mortgages with unknown balances and unconfirmed priority",
+          "KYC documentation incomplete \u2014 credit bureau approximately 24 months stale; current bureau required",
+          "Curkovic Holdings Ltd. corporate registration unconfirmed \u2014 BC Registry certificate of good standing required",
+          "Conflict of interest disclosure required if any broker-lender relationship exists \u2014 not confirmed on file",
+          "Individual broker registration currency with BCFSA not confirmed in file documents"
+        ],
+        "aml_flags": [
+          "Vault Financial Corp $110,000 debt \u2014 non-institutional creditor; identity, nature of obligation, and any registered security unknown; active FINTRAC source-of-funds flag",
+          "Lite Access Technologies Inc. sale-and-buyback cycle (2021\u20132022): $500,000 sale, $180,000 debt forgiveness, buyback within approximately 15 months \u2014 complex capital structure; source-of-funds verification required and not completed",
+          "Undisclosed entity Dalma Products Ltd. \u2014 Ante Curkovic listed as officer/director; not disclosed in initial submission; beneficial ownership picture incomplete",
+          "AMEC rent spike: $2,300 (January) to $23,900 (February) \u2014 unexplained anomalous financial pattern; potential income normalization manipulation",
+          "Three undisclosed liabilities totaling approximately $458,000 (RBC LOC $180K, Vault Financial Corp $110K, CIBC Visa $168K) \u2014 pattern of non-disclosure is an aggravating factor"
+        ],
+        "kyc_checklist_gaps": [
+          "Current credit bureau not provided \u2014 April 2024 Equifax Beacon 687 is approximately 24 months stale; current bureau required before commitment",
+          "Curkovic Holdings Ltd. corporate registration unconfirmed \u2014 BC Registry certificate of good standing not in file",
+          "Beneficial ownership incomplete \u2014 Dalma Products Ltd. (Ante Curkovic as officer/director) not disclosed in initial submission; full beneficial ownership declaration required",
+          "OSB bankruptcy and insolvency search for Ante Curkovic and Curkovic Holdings Ltd. not completed",
+          "CSO civil search for Ante Curkovic not completed",
+          "CSO criminal search for Ante Curkovic not completed",
+          "PPSA search against Curkovic Holdings Ltd., AMEC Cutting & Coring Ltd., and Ante Curkovic personally not completed",
+          "FINTRAC source-of-funds file for Vault Financial Corp $110K obligation not completed",
+          "FINTRAC source-of-funds file for Lite Access Technologies transaction not completed"
+        ],
+        "suspicious_transaction_indicators": [
+          "Vault Financial Corp $110,000 \u2014 non-institutional lender; creditor identity unconfirmed; nature of debt and any registered security unknown; meets FINTRAC unusual transaction indicator threshold for non-institutional lending",
+          "Lite Access Technologies sale-and-buyback within approximately 15 months with $180,000 debt forgiveness \u2014 complex related-party capital structure with multiple concurrent transactions; independent verification required",
+          "AMEC rent anomaly \u2014 monthly rent to Curkovic Holdings spiked from $2,300 to $23,900 in one month with no explanation; potential indicator of income normalization or retroactive rent manipulation",
+          "Pattern of non-disclosure \u2014 three undisclosed liabilities ($458,000 aggregate) and one undisclosed related entity (Dalma Products Ltd.) not surfaced until diligence review; non-disclosure pattern is a qualitative AML indicator",
+          "Occupancy discrepancy \u2014 Hanok Food Group signage and multiple businesses observed at address vs. stated sole tenant Sungiven Foods; factual misrepresentation in submission with potential lease and income implications"
+        ],
+        "suitability_concerns": [
+          "Property-only DSCR of 0.45\u20130.48x is critically insufficient \u2014 debt service cannot be covered by rental income alone under any modeled scenario",
+          "Combined DSCR of 2.0\u20132.2x is entirely dependent on a single unverified broker clarification regarding $352,000/yr AMEC equipment lease treatment \u2014 if treatment changes or is not confirmed, income underwrite collapses",
+          "GDS/TDS ratios cannot be calculated \u2014 individual monthly gross income for Ante Curkovic not isolated in file documents",
+          "Primary exit strategy (refinance at lease renewal) faces meaningful market risk \u2014 small-bay Burnaby industrial vacancy at 4.1% and rising for 12 consecutive quarters; institutional refinance on property cash flow alone is not viable",
+          "Exit strategy is entirely business-income-dependent \u2014 secondary exits (AMEC income paydown, business sale) are conceptually viable but unvalidated",
+          "Combined LTV unverifiable \u2014 existing mortgage balances for BlueShore Financial and Cambridge Mortgage Corp not provided; actual equity position post-payout unconfirmed",
+          "Undisclosed liabilities ($458,000 aggregate) and undisclosed entity (Dalma Products Ltd.) may materially affect true debt load and TDS calculation",
+          "1987-built M2 industrial building with pre-modern seismic code \u2014 seismic upgrade liability unquantified; no Phase I or Phase II environmental assessment referenced in file"
+        ]
+      }
+    }
+  },
+  {
+    "deal_id": "GT-002",
+    "deal_name": "Brookswood Development Land \u2014 1105019 BC Ltd. / Johal-Pattar Group",
+    "raw_outputs": {
+      "screener": {
+        "verdict": "proceed",
+        "reason": "Valid mortgage deal submission for development land refinance. Significant red flags and missing critical documentation noted for Stage 2 risk analysis.",
+        "borrower_name": "1105019 BC Ltd. (with three corporate covenantors)",
+        "property_address": "Brookswood area, Township of Langley, BC (Fraser Valley) \u2014 4.78 acres, SR-2 zoning",
+        "estimated_loan_amount": 5750000,
+        "estimated_ltv": 39.3,
+        "document_types_found": [
+          "appraisal",
+          "property_assessment",
+          "mortgage_refinance_request",
+          "file_notes_and_risk_observations"
+        ],
+        "missing_critical_docs": [
+          "credit_bureau_reports",
+          "title_search_and_legal_description",
+          "corporate_financial_statements",
+          "personal_financial_statements",
+          "corporate_registry_verification",
+          "recent_phase_1_esa",
+          "written_conflict_of_interest_disclosure"
+        ],
+        "red_flags": [
+          "Credit bureaus outstanding for all three covenantors at file close \u2014 no AML/KYC baseline established",
+          "Appraisal ($17.7M) materially higher than BC Assessment ($15.3M) and conservative comp-adjusted value ($14.5M); 4 of 5 comps not independently verifiable",
+          "Declared title value ($8M) significantly lower than appraised value ($17.7M) and loan amount ($5.75M) \u2014 unexplained discrepancy",
+          "Property failed to sell at $21.999M\u2013$23.999M after 9 months active marketing \u2014 pricing inconsistent with appraisal",
+          "Adjacent comparable (3338/3352 200 Street, same specs) remains unsold under court-ordered sale at $19.5M",
+          "Fraser Valley dev land market at 20-year lows (12,224 sales in 2025, S/A ratio 11%); exit strategy timeline (12\u201324 months) inconsistent with absorption data",
+          "Broker (Peet & Cowan) manages Cambridge MIC (current lender being paid out) \u2014 structural conflict of interest requiring written disclosure",
+          "Peet & Cowan BCFSA registration expired April 6, 2026 \u2014 cannot legally act as broker if unrenewed",
+          "Cambridge MIC mortgage at or past maturity (amended to May 1, 2026) \u2014 refinance driven by maturity/default pressure",
+          "Self-employed covenantors (insurance brokerage, roofing, landscaping) \u2014 income verification complexity",
+          "Lucky Landscaping (Surjinder Johal) cannot be located in Vancouver BC; only found in Florida and Michigan",
+          "Five of eight corporate entities unverifiable through open-source search",
+          "Appraisal 14 months old at submission",
+          "Phase 1 ESA 9 years old",
+          "Current zoning SR-2 is not development zoning \u2014 formal rezoning required for stated purpose",
+          "Multiple adjacent dev land parcels under court-ordered sale in same micro-market \u2014 broader distress wave indicators"
+        ],
+        "property_type": "land",
+        "loan_purpose": "refinance",
+        "exit_strategy_summary": "Sell development site within 12\u201324 months as land-hold strategy (no rezoning, no construction planned)"
+      },
+      "extractor": {
+        "borrower": {
+          "name": "1105019 BC Ltd.",
+          "is_corporation": true,
+          "credit_score": null,
+          "credit_note": "No credit bureau reports provided. Credit bureaus outstanding for all three covenantors at file close. No AML/KYC baseline established.",
+          "income_type": "self_employed",
+          "income_verified": false,
+          "employment_details": "Three corporate covenantors: insurance brokerage, roofing, and landscaping businesses. All self-employed. Income verification not completed.",
+          "sin": "[SIN-REDACTED]",
+          "dob": "[DOB-REDACTED]",
+          "identity_verified": false,
+          "aml_kyc_complete": false,
+          "fintrac_note": "No credit bureaus on file. Cannot complete FINTRAC-required client identification."
+        },
+        "co_borrowers": [
+          {
+            "name": "Corporate Covenantor 1 (Insurance Brokerage \u2014 identity unconfirmed)",
+            "is_corporation": true,
+            "role": "corporate_covenantor_with_personal_guarantor",
+            "income_type": "self_employed",
+            "credit_score": null,
+            "identity_verified": false,
+            "notes": "One of three corporate covenantors. Backed by individual personal guarantor. Credit bureau not provided. Five of eight corporate entities in file unverifiable through open-source search."
+          },
+          {
+            "name": "Corporate Covenantor 2 (Roofing \u2014 identity unconfirmed)",
+            "is_corporation": true,
+            "role": "corporate_covenantor_with_personal_guarantor",
+            "income_type": "self_employed",
+            "credit_score": null,
+            "identity_verified": false,
+            "notes": "One of three corporate covenantors. Backed by individual personal guarantor. Credit bureau not provided."
+          },
+          {
+            "name": "Corporate Covenantor 3 \u2014 Lucky Landscaping / Surjinder Johal (unverifiable in Vancouver BC)",
+            "is_corporation": true,
+            "role": "corporate_covenantor_with_personal_guarantor",
+            "income_type": "self_employed",
+            "credit_score": null,
+            "identity_verified": false,
+            "notes": "Lucky Landscaping attributed to Surjinder Johal. Cannot be located in Vancouver BC \u2014 only found in Florida and Michigan. Significant identity/verifiability concern."
+          }
+        ],
+        "property": {
+          "address": "Brookswood area, Township of Langley, BC (Fraser Valley)",
+          "legal_description": null,
+          "property_type": "land",
+          "property_sub_type": "development land \u2014 raw / residential subdivision potential",
+          "lot_size_acres": 4.78,
+          "zoning": "SR-2",
+          "ncp_designation": "Booth NCP Rowhouse/Townhouse",
+          "appraised_value": 17709000,
+          "appraisal_date": null,
+          "appraisal_age_months": 14,
+          "appraisal_notes": "Appraisal 14 months old at submission. Considered aggressive by file reviewer. 4 of 5 comparables not independently verifiable.",
+          "bc_assessment_value": 15315000,
+          "conservative_comp_adjusted_value": 14500000,
+          "declared_title_value": 8000000,
+          "declared_title_value_note": "Declared value on title ($8,000,000) is materially lower than appraised value ($17,709,000) and loan amount ($5,750,000). Unexplained discrepancy. Potential misrepresentation risk.",
+          "existing_mortgages_balance": null,
+          "existing_lender": "Cambridge MIC",
+          "existing_mortgage_maturity": "2026-05-01",
+          "existing_mortgage_status": "At or past maturity \u2014 amended to May 1, 2026. Refinance urgency consistent with maturity or default pressure.",
+          "title_search_available": false,
+          "environmental": {
+            "phase1_esa_available": true,
+            "phase1_esa_age_years": 9,
+            "phase1_esa_note": "Phase 1 ESA is 9 years old. Does not meet current standard for active lending decisions. Fresh Phase 1 ESA required.",
+            "phase2_esa_available": false
+          },
+          "rezoning_required": true,
+          "rezoning_note": "Current SR-2 zoning is not development zoning. Formal rezoning required for stated subdivision/development purpose. No rezoning application referenced in file.",
+          "market_context": "Fraser Valley development land market at 20-year structural lows. 12,224 sales in 2025. Sales-to-active ratio approximately 11%. Multiple adjacent parcels under court-ordered sale in same micro-market."
+        },
+        "loan": {
+          "requested_amount": 5750000,
+          "purpose": "refinance",
+          "purpose_detail": "Payout of existing Cambridge MIC first mortgage",
+          "term_months": 12,
+          "amortization_months": null,
+          "interest_rate": null,
+          "loan_position": "first",
+          "loan_type": "private_mortgage",
+          "exit_strategy": "Sell development site within 12\u201324 months as land-hold strategy. No rezoning or construction planned.",
+          "exit_strategy_risk": "Exit timeline of 12\u201324 months inconsistent with observable absorption data. Adjacent comparable (3338/3352 200 Street, 4.79 acres, same NCP) remains unsold under court-ordered sale at $19,500,000. Property itself failed to sell at $21,999,000\u2013$23,999,000 after 9 months of active marketing."
+        },
+        "ltv": 32.47,
+        "calculated_fields": {
+          "ltv_basis": "appraised_value",
+          "ltv_appraised": 32.47,
+          "ltv_bc_assessment": 37.54,
+          "ltv_conservative_comp_adjusted": 39.31,
+          "combined_ltv": null,
+          "gds_ratio": null,
+          "tds_ratio": null,
+          "gds_tds_note": "GDS and TDS cannot be calculated. No income documentation or monthly obligations data provided."
+        },
+        "broker": {
+          "name": "Peet & Cowan",
+          "bcfsa_registered": false,
+          "bcfsa_registration_expiry": "2026-04-06",
+          "bcfsa_note": "Peet & Cowan BCFSA registration expired April 6, 2026 \u2014 two days before research date. Cannot legally act as mortgage broker in BC if not renewed.",
+          "conflict_of_interest": true,
+          "conflict_of_interest_detail": "Peet & Cowan manages Cambridge MIC, the current lender being paid out by this refinance. This is a non-arm's-length transaction. Written conflict of interest disclosure required under BC Mortgage Brokers Act. No written disclosure confirmed on file."
+        },
+        "compliance": {
+          "aml_kyc_complete": false,
+          "credit_bureaus_on_file": false,
+          "fintrac_client_id_complete": false,
+          "conflict_of_interest_disclosure_written": false,
+          "broker_registration_valid": false,
+          "phase1_esa_current": false,
+          "title_search_on_file": false,
+          "corporate_registry_verified": false,
+          "compliance_summary": [
+            "No credit bureaus on file for any covenantor \u2014 AML/KYC and FINTRAC client identification incomplete.",
+            "Peet & Cowan BCFSA registration expired April 6, 2026 \u2014 broker cannot legally act if unrenewed.",
+            "Structural conflict of interest (broker = manager of current lender Cambridge MIC) \u2014 written disclosure required under BC Mortgage Brokers Act, not confirmed on file.",
+            "Declared title value ($8,000,000) materially lower than appraised value ($17,709,000) and loan amount ($5,750,000) \u2014 potential misrepresentation risk requiring investigation.",
+            "Phase 1 ESA is 9 years old \u2014 not current.",
+            "Five of eight corporate entities unverifiable through open-source search.",
+            "Lucky Landscaping / Surjinder Johal cannot be located in Vancouver BC."
+          ]
+        },
+        "data_gaps": [
+          "Credit bureau reports \u2014 all three covenantors",
+          "Title search and legal description",
+          "Corporate financial statements \u2014 all entities",
+          "Personal financial statements \u2014 all individual guarantors",
+          "Corporate registry verification \u2014 five of eight entities unverifiable",
+          "Fresh Phase 1 ESA (current on file is 9 years old)",
+          "Written conflict of interest disclosure (Peet & Cowan / Cambridge MIC)",
+          "BCFSA registration renewal confirmation for Peet & Cowan",
+          "Explanation for declared title value ($8M) vs appraised value ($17.7M) discrepancy",
+          "Existing Cambridge MIC mortgage balance (for combined LTV calculation)",
+          "Income documentation for all covenantors",
+          "Appraisal report date (exact date not stated \u2014 only age of 14 months referenced)",
+          "Identity of all three individual personal guarantors behind corporate covenantors",
+          "Corporate registry details and ownership structure for 1105019 BC Ltd. and all covenantors"
+        ],
+        "confidence_notes": [
+          "Primary LTV (appraised): 32.47%. BC Assessment LTV: 37.54%. Conservative comp-adjusted LTV: 39.31%.",
+          "Appraised value of $17,709,000 is considered aggressive by file reviewer. It is $2,394,000 above BC Assessment ($15,315,000) and $3,209,000 above conservative comp-adjusted value ($14,500,000). 4 of 5 appraisal comparables were not independently verifiable.",
+          "Declared title value of $8,000,000 is materially inconsistent with appraised value ($17,709,000), BC Assessment ($15,315,000), and loan amount ($5,750,000). No explanation provided in file.",
+          "Property failed to sell at $21,999,000\u2013$23,999,000 during 9 months of active marketing \u2014 actual market demand materially inconsistent with appraised value.",
+          "Adjacent comparable at 3338/3352 200 Street (4.79 acres, same NCP designation) remains unsold under court-ordered sale at $19,500,000 \u2014 additional negative market signal.",
+          "Combined LTV cannot be calculated: existing Cambridge MIC mortgage balance not disclosed in file.",
+          "GDS and TDS ratios cannot be calculated: no income documentation or debt schedule provided.",
+          "Exit strategy (12\u201324 month sale) is inconsistent with current Fraser Valley development land absorption data (S/A ratio ~11%, 20-year sales low).",
+          "Appraisal is 14 months old at submission \u2014 material staleness in a declining market.",
+          "Broker BCFSA registration expired April 6, 2026. Deal cannot proceed with an unregistered broker under BC law.",
+          "Structural conflict of interest: Peet & Cowan is both the submitting broker and manager of Cambridge MIC (lender being paid out). This is a significant governance concern requiring written disclosure.",
+          "Lucky Landscaping (Surjitter Johal) listed as covenantor cannot be located in Vancouver BC. Entity found only in Florida and Michigan. Identity and standing as covenantor unverified.",
+          "Multiple adjacent development land parcels in same micro-market are under court-ordered sale \u2014 broader market distress indicators beyond this individual property.",
+          "Overall confidence in appraised value: LOW. Overall confidence in exit strategy viability within stated timeline: LOW. File has multiple material deficiencies requiring resolution before credit approval."
+        ]
+      },
+      "risk": {
+        "overall_rating": "Very High",
+        "overall_score": 4.65,
+        "risk_factors": [
+          {
+            "factor": "Appraisal Reliability & Value Discrepancy",
+            "rating": "Very High",
+            "weight": 0.2,
+            "explanation": "Declared title value of $8M is materially inconsistent with appraised value of $17.7M and loan amount of $5.75M. Appraised value considered aggressive by file reviewer; 4 of 5 comparables unverifiable. Property failed to sell at $22M-$24M over 9 months of active marketing. Conservative comp-adjusted value of $14.5M implies true LTV closer to 39-40%, still acceptable, but value reliability is critically impaired. Potential misrepresentation risk on declared title value requires investigation before any credit decision."
+          },
+          {
+            "factor": "Exit Strategy Viability",
+            "rating": "Very High",
+            "weight": 0.2,
+            "explanation": "Stated exit of property sale within 12-24 months is directly contradicted by observable market data: Fraser Valley development land at 20-year sales low, sales-to-active ratio ~11%, adjacent near-identical parcel (3338/3352 200 St, 4.79 acres, same NCP) unsold under court-ordered sale at $19.5M. Subject property itself failed to sell after 9 months at $22M-$24M. No rezoning application filed despite SR-2 zoning requiring formal rezoning for development use. Exit is not credibly achievable within loan term without material market recovery or significant price reduction."
+          },
+          {
+            "factor": "Compliance & Regulatory Blockers",
+            "rating": "Very High",
+            "weight": 0.2,
+            "explanation": "Broker BCFSA registration expired April 6, 2026 \u2014 deal cannot legally proceed with an unregistered broker in BC. Structural conflict of interest (Peet & Cowan manages Cambridge MIC, the lender being paid out) requires written disclosure under BC Mortgage Brokers Act \u2014 not confirmed on file. No AML/KYC or FINTRAC client identification completed for any covenantor. These are not documentation gaps \u2014 they are regulatory blockers that prevent lawful origination."
+          },
+          {
+            "factor": "Identity & Entity Verifiability",
+            "rating": "Very High",
+            "weight": 0.15,
+            "explanation": "Five of eight corporate entities unverifiable through open-source search. Lucky Landscaping / Surjinder Johal listed as covenantor cannot be located in Vancouver BC \u2014 entity found only in Florida and Michigan. No identity verification completed for any individual guarantor behind the three corporate covenantors. AML/KYC baseline cannot be established. Borrower identity confidence is critically low, raising potential fraud risk indicators."
+          },
+          {
+            "factor": "Credit & Income Risk",
+            "rating": "Very High",
+            "weight": 0.1,
+            "explanation": "No credit bureau reports provided for any covenantor \u2014 not stale bureaus, but entirely absent. No income documentation of any kind provided. GDS/TDS cannot be calculated. All three covenantors are self-employed across insurance brokerage, roofing, and landscaping \u2014 income diversity is noted but unverifiable. Combined LTV cannot be calculated as existing Cambridge MIC balance is undisclosed."
+          },
+          {
+            "factor": "Property & Environmental Risk",
+            "rating": "High",
+            "weight": 0.1,
+            "explanation": "Raw development land at SR-2 zoning requiring formal rezoning for subdivision/development purpose \u2014 no rezoning application on file. Phase 1 ESA is 9 years old, does not meet current lending standards. No title search on file, legal description absent. Land in a distressed micro-market with adjacent court-ordered sales. Property type (raw development land) carries inherent illiquidity and planning risk."
+          },
+          {
+            "factor": "LTV Risk",
+            "rating": "Low",
+            "weight": 0.05,
+            "explanation": "Appraised LTV of 32.47% is structurally low. Even on conservative comp-adjusted value ($14.5M), LTV is 39.31%. BC Assessment LTV is 37.54%. The equity cushion is the single strongest mitigant in this file, but its protective value is undermined by: (a) aggressive and unverifiable appraisal, (b) failed marketing history suggesting true market value is materially below appraised, and (c) undisclosed existing Cambridge MIC balance preventing calculation of true combined LTV."
+          }
+        ],
+        "mitigating_factors": [
+          "Low nominal LTV at 32.47% on appraised value provides a large stated equity buffer",
+          "Conservative comp-adjusted LTV of 39.31% still reflects meaningful equity position even under stressed valuation",
+          "BC Assessment value of $15.315M independently supports a loan of $5.75M at sub-40% LTV",
+          "Three corporate covenantors with personal guarantors provide multi-party recourse (unverified but structurally present)",
+          "First mortgage position \u2014 no disclosed subordinate debt (though combined LTV unconfirmable)",
+          "Short 12-month term limits lender exposure duration",
+          "NCP designation (Rowhouse/Townhouse) provides planning pathway if rezoning proceeds"
+        ],
+        "aggravating_factors": [
+          "Declared title value ($8M) materially inconsistent with appraised value ($17.7M) and loan amount ($5.75M) \u2014 potential misrepresentation requiring investigation",
+          "4 of 5 appraisal comparables not independently verifiable \u2014 appraised value reliability critically impaired",
+          "Property failed to sell at $22M-$24M over 9 months of active marketing \u2014 market demand directly contradicts appraised value",
+          "Adjacent near-identical parcel unsold under court-ordered sale \u2014 micro-market distress confirmed",
+          "Fraser Valley development land at 20-year sales low, S/A ratio ~11% \u2014 exit strategy timeline not credible",
+          "Broker BCFSA registration expired \u2014 regulatory blocker preventing lawful origination",
+          "Structural conflict of interest (broker = manager of current lender) \u2014 written disclosure absent",
+          "No AML/KYC or FINTRAC client identification completed \u2014 regulatory compliance failure",
+          "Lucky Landscaping / Surjinder Johal cannot be located in Vancouver BC \u2014 material identity/fraud concern",
+          "Five of eight corporate entities unverifiable \u2014 entity legitimacy in question",
+          "No credit bureaus for any covenantor \u2014 not stale, entirely absent",
+          "No income documentation of any kind \u2014 income unverifiable for all parties",
+          "Existing Cambridge MIC mortgage balance undisclosed \u2014 true combined LTV unknown",
+          "Phase 1 ESA is 9 years old \u2014 environmental status unknown under current standards",
+          "Appraisal is 14 months old in a declining market \u2014 materially stale",
+          "No rezoning application filed despite rezoning being prerequisite for development exit",
+          "No title search on file \u2014 encumbrances, liens, and registered interests unknown",
+          "Multiple adjacent development land parcels under court-ordered sale in same micro-market"
+        ],
+        "ltv_risk": "Low",
+        "credit_risk": "Very High",
+        "exit_strategy_risk": "Very High",
+        "income_risk": "Very High",
+        "property_risk": "High",
+        "risk_summary": "This file presents multiple unmitigated critical risks that collectively preclude credit approval in its current form. While the nominal LTV of 32-39% (depending on valuation basis) provides a meaningful equity cushion on paper, that cushion is materially undermined by significant concerns about the reliability of the appraised value: 4 of 5 comparables are not independently verifiable, the appraisal is 14 months old in a declining market, and the subject property itself failed to sell at $22M-$24M over 9 months of active marketing. The declared title value of $8M is irreconcilably inconsistent with the appraised value of $17.7M and the loan amount of $5.75M, creating a potential misrepresentation risk that must be investigated before any credit decision.\n\nThe exit strategy \u2014 sale of raw development land within 12-24 months \u2014 is directly contradicted by observable market conditions: Fraser Valley development land is at a 20-year sales low with an ~11% sales-to-active ratio, and an adjacent near-identical parcel (4.79 acres, same NCP designation) remains unsold under court-ordered sale at $19.5M. The subject property has no rezoning application on file despite requiring formal rezoning from SR-2 for its stated development purpose.\n\nThe file has three regulatory blockers that must be resolved before this transaction can lawfully proceed: (1) Peet & Cowan's BCFSA registration expired April 6, 2026 \u2014 the broker cannot legally act in BC unless renewed; (2) a structural conflict of interest exists as Peet & Cowan manages Cambridge MIC, the lender being paid out \u2014 written disclosure is required under the BC Mortgage Brokers Act and is not confirmed on file; and (3) AML/KYC and FINTRAC client identification are incomplete for all covenantors.\n\nBorrower and covenantor identity confidence is critically low. Five of eight corporate entities are unverifiable through open-source search, and Lucky Landscaping / Surjinder Johal \u2014 named as a covenantor in Vancouver BC \u2014 can only be located in Florida and Michigan, raising material identity and potential fraud concerns. No credit bureaus, income documentation, personal financial statements, or corporate financial statements have been provided for any party.\n\nThe equity cushion remains the file's only substantive mitigant, but given the unverifiable appraisal, undisclosed existing mortgage balance (preventing true combined LTV calculation), distressed market conditions, and the volume of unresolved compliance and identity concerns, this deal is assessed as Very High risk. It is not fundable in its current state and requires resolution of the regulatory blockers and material documentation deficiencies as conditions precedent to any reconsideration.",
+        "recommended_rate_premium_bps": 650,
+        "recommended_conditions": [
+          "MANDATORY \u2014 REGULATORY: Confirm Peet & Cowan BCFSA registration renewal before deal proceeds \u2014 broker cannot legally act in BC under expired registration",
+          "MANDATORY \u2014 REGULATORY: Obtain written conflict of interest disclosure from Peet & Cowan regarding its role as manager of Cambridge MIC (lender being paid out) in accordance with BC Mortgage Brokers Act",
+          "MANDATORY \u2014 COMPLIANCE: Complete AML/KYC and FINTRAC client identification for all three individual guarantors and all corporate covenantors before any credit commitment",
+          "MANDATORY \u2014 IDENTITY: Obtain independent verification of Lucky Landscaping / Surjinder Johal as a valid BC-registered entity with standing as covenantor \u2014 file note that entity cannot be located in Vancouver BC is a fraud risk indicator requiring resolution",
+          "MANDATORY \u2014 IDENTITY: Complete corporate registry verification for all five unverifiable entities; obtain certificates of good standing and ownership/directorship confirmation for 1105019 BC Ltd. and all covenantors",
+          "MANDATORY \u2014 VALUATION: Obtain explanation for declared title value of $8M vs. appraised value of $17.7M and loan amount of $5.75M \u2014 escalate for legal review if explanation is not satisfactory; potential misrepresentation must be ruled out before advancing",
+          "MANDATORY \u2014 VALUATION: Commission fresh independent appraisal from a lender-approved appraiser with verifiable comparable support \u2014 current appraisal is 14 months old, considered aggressive, and 4 of 5 comparables are not independently verifiable",
+          "MANDATORY \u2014 TITLE: Obtain title search and confirm no encumbrances, court orders, or liens beyond disclosed Cambridge MIC first mortgage; confirm existing Cambridge MIC mortgage balance for combined LTV calculation",
+          "MANDATORY \u2014 ENVIRONMENTAL: Commission fresh Phase 1 ESA from a qualified environmental professional \u2014 current ESA is 9 years old and does not meet current lending standards",
+          "MANDATORY \u2014 CREDIT: Obtain current credit bureau reports for all three individual guarantors behind the corporate covenantors before credit adjudication",
+          "MANDATORY \u2014 INCOME: Obtain minimum two years of corporate financial statements (prepared by CPA) and personal financial statements for all individual guarantors",
+          "CONDITION \u2014 ZONING: Provide evidence of rezoning application status or legal opinion on development feasibility under SR-2 zoning given exit strategy is premised on development land sale",
+          "CONDITION \u2014 MARKET: Provide market opinion from local commercial real estate broker on realistic absorption timeline and achievable price range for the subject property in current Fraser Valley market conditions",
+          "CONDITION \u2014 EXIT: If sale exit is confirmed, lender to require quarterly marketing updates and reserve the right to require active listing within 6 months of funding if no bona fide offers received",
+          "CONDITION \u2014 STRUCTURE: Consider requiring partial repayment or fee holdback to further reduce effective LTV given market liquidity concerns; minimum 10% lender fee holdback recommended",
+          "NOTE \u2014 DEAL VIABILITY: This deal should not proceed to conditional approval until all MANDATORY conditions above are satisfied. The regulatory blockers alone (expired broker registration, undisclosed conflict of interest, incomplete FINTRAC) are grounds for immediate suspension of the file pending resolution."
+        ]
+      },
+      "lender": {
+        "recommended_lenders": [
+          {
+            "lender_name": "Specialty Private Mortgage Fund (BC Development Land Focus)",
+            "rate": "11.99-13.99%",
+            "term": "12 months",
+            "max_ltv": "50% on conservative value",
+            "fit": "moderate",
+            "match_reasons": [
+              "BC-focused private funds with development land mandates are the only lender class likely to consider raw SR-2 land in Fraser Valley",
+              "conservative comp-adjusted LTV of 39.31% falls within typical 50% max LTV for this lender type",
+              "$5.75M loan size is within institutional private fund capacity range",
+              "12-month term aligns with standard bridge/land-hold product offered by this lender class",
+              "rate band 11.99-13.99% reflects appropriate risk premium for unverified borrower profile and distressed micro-market"
+            ]
+          },
+          {
+            "lender_name": "High-Net-Worth Individual Private Lender (BC-Licensed Syndicate)",
+            "rate": "12.99-14.99%",
+            "term": "12 months",
+            "max_ltv": "40% on independently verified value",
+            "fit": "weak",
+            "match_reasons": [
+              "individual private lenders operating through licensed syndicates are most tolerant of incomplete borrower documentation pending cure",
+              "first mortgage position with stated equity cushion is the primary draw for yield-seeking private capital",
+              "rate ceiling of 14.99% reflects maximum realistic pricing for this lender class in BC and is justified by risk profile",
+              "this lender type can move quickly once compliance conditions are satisfied, supporting refinance urgency",
+              "will require full MANDATORY condition satisfaction before commitment \u2014 making this a last-resort conditional option only"
+            ]
+          },
+          {
+            "lender_name": "Private Mortgage Investment Corporation (MIC) \u2014 BC Distressed Land Specialist",
+            "rate": "11.49-13.49%",
+            "term": "12 months open or with 3-month prepayment",
+            "max_ltv": "45% on BC Assessment or fresh appraisal",
+            "fit": "weak",
+            "match_reasons": [
+              "MICs with distressed or non-conforming land mandates are structurally positioned to evaluate SR-2 raw land files where chartered banks will not go",
+              "BC Assessment LTV of 37.54% falls within a 45% MIC ceiling if BC Assessment is used as valuation basis instead of aggressive appraisal",
+              "open or short prepayment term accommodates borrower's stated 12-24 month sale exit without penalty exposure",
+              "MIC structure provides compliance oversight framework that partially offsets borrower AML/KYC gaps \u2014 though FINTRAC requirements still apply to MIC directly",
+              "$5.75M is fundable within larger MIC capital pools without syndication complexity"
+            ]
+          }
+        ]
+      },
+      "compliance": {
+        "overall_status": "fail",
+        "checks": [
+          {
+            "check_name": "s.347 Criminal Code EAR",
+            "category": "Criminal Code",
+            "status": "warning",
+            "detail": "Interest rate not stated in file. Lender and broker fees not disclosed. EAR cannot be calculated. s.347 exemption for commercial loans >$500K to a corporation may apply (borrower is 1105019 BC Ltd., loan is $5,750,000). Exemption is not automatic \u2014 Josh must confirm loan is non-consumer and corporation qualifies. Cannot confirm EAR compliance without rate and fee data.",
+            "action_required": "Josh to obtain stated interest rate and all lender/broker fees to calculate EAR. Confirm s.347 commercial exemption applies. If exemption is not confirmed, rate and fee data are required before funding."
+          },
+          {
+            "check_name": "BCFSA Pre-Funding Requirements",
+            "category": "BCFSA",
+            "status": "fail",
+            "detail": "Multiple BCFSA pre-funding requirements are absent or unconfirmed. CRITICAL BLOCKER: Peet & Cowan BCFSA registration expired April 6, 2026 \u2014 broker cannot legally originate mortgages in BC under an expired registration. Additionally: Form 9 or Form 10 not confirmed on file; cost of credit disclosure not confirmed; government-issued photo ID not obtained for any borrower or guarantor; title search absent; KYC documentation incomplete for all parties; written conflict of interest disclosure (Peet & Cowan / Cambridge MIC) not confirmed on file despite mandatory requirement under BC Mortgage Brokers Act.",
+            "action_required": "IMMEDIATE: Confirm Peet & Cowan BCFSA registration renewal before any further steps \u2014 deal cannot lawfully proceed with an unregistered broker. Obtain: Form 9 or Form 10; cost of credit disclosure; government-issued photo ID for all borrowers and guarantors; title search; written conflict of interest disclosure from Peet & Cowan re Cambridge MIC relationship. All items required before funding."
+          },
+          {
+            "check_name": "FINTRAC KYC",
+            "category": "AML",
+            "status": "fail",
+            "detail": "FINTRAC client identification is incomplete for all parties. No credit bureau reports on file for any covenantor. Government-issued photo ID not obtained for any individual guarantor behind the three corporate covenantors. Beneficial ownership of 1105019 BC Ltd. and all co-borrowing corporate entities not confirmed. Five of eight corporate entities are unverifiable through open-source search. Lucky Landscaping / Surjinder Johal listed as Vancouver BC covenantor can only be located in Florida and Michigan \u2014 material identity and potential fraud indicator. Source of funds not documented. No AML/KYC baseline has been established for any party on this file. L0 Human Only verification required per FINTRAC.",
+            "action_required": "Josh (L0 Human Only): Complete FINTRAC client identification for all individual guarantors and all corporate covenantors before any credit commitment or funding. Obtain beneficial ownership disclosure for all corporate entities. Document and verify source of funds. Independently verify Lucky Landscaping / Surjinder Johal as a valid BC-registered entity \u2014 current inability to locate in BC is a fraud risk indicator requiring escalation and resolution prior to advancing this file."
+          },
+          {
+            "check_name": "BPCPA Consumer Protection",
+            "category": "BPCPA",
+            "status": "clear",
+            "detail": "Borrower is a corporation (1105019 BC Ltd.) and loan amount is $5,750,000. This is a commercial transaction. BPCPA consumer protection requirements and consumer cost of credit disclosure obligations are not triggered for commercial loans to corporations. BCFSA cost of credit disclosure requirements remain applicable and are addressed under the BCFSA pre-funding check.",
+            "action_required": null
+          },
+          {
+            "check_name": "Suitability Assessment",
+            "category": "Suitability",
+            "status": "fail",
+            "detail": "Suitability cannot be affirmatively established and presents multiple material concerns. No income documentation exists for any covenantor \u2014 GDS and TDS are incalculable. No credit bureaus provided \u2014 creditworthiness is entirely unassessed. Exit strategy (sale of raw development land within 12\u201324 months) is directly contradicted by observable market data: Fraser Valley development land at a 20-year sales low, sales-to-active ratio ~11%, adjacent near-identical parcel (4.79 acres, same NCP) unsold under court-ordered sale at $19.5M, and the subject property itself failed to sell at $21.9M\u2013$24M after 9 months of active marketing. SR-2 zoning requires formal rezoning for the stated development use and no rezoning application is on file. Appraisal is 14 months old in a declining market with 4 of 5 comparables unverifiable. Declared title value of $8M is materially inconsistent with appraised value of $17.7M and loan amount of $5.75M \u2014 unexplained discrepancy raises potential misrepresentation risk. Combined LTV cannot be calculated as existing Cambridge MIC mortgage balance is undisclosed.",
+            "action_required": "Josh to determine whether suitability can be established at all given current file state. Minimum requirements before suitability can be re-assessed: income documentation (2 years CPA-prepared corporate financials and personal financial statements for all guarantors); credit bureau reports for all individual guarantors; fresh independent appraisal with verifiable comparables; explanation for $8M declared title value discrepancy; confirmation of existing Cambridge MIC mortgage balance for combined LTV; independent market opinion on realistic sale timeline and achievable price in current Fraser Valley conditions."
+          }
+        ],
+        "bcfsa_disclosure_required": true,
+        "bcfsa_notes": [
+          "Form 9 (Lender Disclosure) or Form 10 (Investor Disclosure) \u2014 not confirmed on file, required for all private mortgages",
+          "Cost of credit disclosure \u2014 not confirmed on file, required for all mortgages",
+          "Government-issued photo ID \u2014 not obtained for any borrower or guarantor",
+          "Title search \u2014 absent, required before funding",
+          "KYC documentation \u2014 incomplete for all parties per BCFSA standards",
+          "Conflict of interest disclosure \u2014 mandatory under BC Mortgage Brokers Act; Peet & Cowan manages Cambridge MIC (lender being paid out); written disclosure not confirmed on file",
+          "Broker registration \u2014 Peet & Cowan BCFSA registration expired April 6, 2026; deal cannot lawfully proceed until renewal is confirmed"
+        ],
+        "aml_flags": [
+          "Lucky Landscaping / Surjinder Johal listed as Vancouver BC covenantor \u2014 entity locatable only in Florida and Michigan, not in BC; material identity concern and potential fraud indicator",
+          "Five of eight corporate entities unverifiable through open-source search \u2014 beneficial ownership and entity legitimacy cannot be confirmed",
+          "No government-issued photo ID obtained for any individual guarantor behind the three corporate covenantors",
+          "Beneficial ownership of 1105019 BC Ltd. and all corporate covenantors not disclosed or verified",
+          "Source of funds / down payment not documented",
+          "Declared title value ($8,000,000) materially inconsistent with appraised value ($17,709,000) and loan amount ($5,750,000) \u2014 unexplained discrepancy is a misrepresentation risk indicator requiring investigation",
+          "No credit bureaus or financial documentation provided for any party \u2014 AML/KYC baseline cannot be established",
+          "Structural conflict of interest: submitting broker Peet & Cowan is manager of Cambridge MIC, the lender being paid out \u2014 non-arm's-length transaction with no written disclosure on file"
+        ],
+        "kyc_checklist_gaps": [
+          "Government-issued photo ID \u2014 not obtained for any individual guarantor (three required, one per corporate covenantor)",
+          "Credit bureau reports \u2014 absent for all three covenantors (not stale, entirely not provided)",
+          "Beneficial ownership disclosure \u2014 not completed for 1105019 BC Ltd. or any of the three corporate covenantors",
+          "Corporate registry verification \u2014 five of eight entities unverifiable through open-source search",
+          "Identity verification for Lucky Landscaping / Surjinder Johal \u2014 cannot be located in Vancouver BC",
+          "Source of funds / down payment \u2014 not documented",
+          "Corporate financial statements \u2014 not provided for any entity",
+          "Personal financial statements \u2014 not provided for any individual guarantor",
+          "FINTRAC client identification \u2014 incomplete for all parties on file"
+        ],
+        "suspicious_transaction_indicators": [
+          "Lucky Landscaping / Surjinder Johal identified as Vancouver BC covenantor but entity locatable only in Florida and Michigan \u2014 identity and standing as BC covenantor unverified; fraud risk indicator",
+          "Five of eight corporate entities unverifiable through open-source search \u2014 entity legitimacy in question",
+          "Declared title value of $8,000,000 is materially inconsistent with appraised value of $17,709,000 and loan amount of $5,750,000 \u2014 gap is irreconcilable without explanation; potential misrepresentation risk",
+          "Property failed to sell at $21,999,000\u2013$23,999,000 during 9 months of active marketing \u2014 stated appraised value is not supported by market demand",
+          "4 of 5 appraisal comparables not independently verifiable \u2014 appraisal reliability critically impaired",
+          "Structural conflict of interest: Peet & Cowan is both the submitting broker and manager of Cambridge MIC (the lender being paid out) \u2014 non-arm's-length transaction with no written disclosure; governance concern",
+          "No AML/KYC documentation completed for any party \u2014 file submitted with no identity baseline established"
+        ],
+        "suitability_concerns": [
+          "Income unverifiable for all covenantors \u2014 no documentation of any kind provided; GDS and TDS cannot be calculated",
+          "No credit bureau reports for any covenantor \u2014 creditworthiness entirely unassessed",
+          "Exit strategy (sale within 12\u201324 months) contradicted by observable market data: Fraser Valley development land at 20-year sales low, S/A ratio ~11%",
+          "Adjacent near-identical parcel (3338/3352 200 Street, 4.79 acres, same NCP designation) remains unsold under court-ordered sale at $19,500,000",
+          "Subject property failed to sell at $21,999,000\u2013$23,999,000 after 9 months of active marketing \u2014 market demand materially inconsistent with appraised value",
+          "SR-2 zoning requires formal rezoning for stated development use \u2014 no rezoning application on file",
+          "Appraisal 14 months old in a declining market; 4 of 5 comparables unverifiable \u2014 collateral value reliability critically impaired",
+          "Declared title value of $8,000,000 irreconcilably inconsistent with appraised value of $17,709,000 and loan amount of $5,750,000 \u2014 potential misrepresentation risk",
+          "Existing Cambridge MIC mortgage balance undisclosed \u2014 combined LTV cannot be calculated; true equity position unknown",
+          "Phase 1 ESA is 9 years old \u2014 environmental status of collateral unknown under current standards",
+          "No title search on file \u2014 encumbrances, liens, and registered interests unknown",
+          "Multiple adjacent development land parcels in same micro-market under court-ordered sale \u2014 broader market distress confirmed"
+        ]
+      }
+    }
+  },
+  {
+    "deal_id": "GT-003",
+    "deal_name": "Mr. P's & Mr. Pet's \u2014 32497 South Fraser Way, Abbotsford BC",
+    "raw_outputs": {
+      "screener": {
+        "verdict": "proceed",
+        "reason": "Commercial mortgage deal submission for $4.27M retail property purchase in Abbotsford, BC. Borrower is operating company with personal guarantee. Extensive documentation package provided with detailed financial and appraisal information. Multiple red flags and missing docs noted for Stage 2 review.",
+        "borrower_name": "Mr. P's & Mr. Pet's Holdings Ltd. (Greg Penno, 100% owner, personal guarantee)",
+        "property_address": "South Fraser Way corridor, Abbotsford, BC (Clearbrook Core submarket)",
+        "estimated_loan_amount": 4270000,
+        "estimated_ltv": 62.79,
+        "document_types_found": [
+          "appraisal",
+          "financial_statements",
+          "broker_summary",
+          "property_details"
+        ],
+        "missing_critical_docs": [
+          "credit_bureau",
+          "title_search",
+          "government_id",
+          "form_9_lender_disclosure"
+        ],
+        "red_flags": [
+          "Borrower is existing NNN tenant; lease income basis of appraisal will disappear post-closing",
+          "30% spread between purchase price ($6.1M) and appraised value ($7.945M); appraisal 38% above FVRD Abbotsford retail average",
+          "Business in financial decline: Opco revenue fell 28% from $22.5M (2023) to $16.1M (2025); three consecutive years net losses",
+          "Negative Holdco equity of ($1.79M) from $5.1M dividend extraction",
+          "CRA payroll tax arrears $923K-$1.3M with $110K/month repayment creates ~$46K/month cash deficit over ~5-month paydown period",
+          "Exit strategy credibility weak: 12-month bank refinance not viable given three years losses and negative equity; depends on unproven 2026 recovery",
+          "Broker financial summary material column-labeling errors: '2025 YTD 9mo' is actually 2026 projections; '2025 YE' is actually 2024 actuals",
+          "DSCR covenant breach on existing BDC loan (~$524K) as of 2024 year-end; only verbal waiver, no written waiver in file",
+          "Stock portfolio verification gap: $9.9M initially unverified; subsequently confirmed as $8.2M CAD (IBKR) + $3.9M USD",
+          "1986 concrete block construction with unknown seismic reinforcement status; 40-year building age implies deferred maintenance risk",
+          "Inventory qualification issue: $2-4M inventory across years never physically counted",
+          "5-month bridge financing period critical vulnerability given CRA cash flow deficit timing"
+        ],
+        "property_type": "commercial",
+        "loan_purpose": "purchase",
+        "exit_strategy_summary": "Refinance to senior lender (National Bank identified with informal interest only); realistically Tier 2 credit union or Tier 3 Alt-A lender given Opco financial condition. Strategy hinges on unproven 2026 revenue recovery and CRA payoff completion."
+      },
+      "extractor": {
+        "borrower": {
+          "name": "Mr. P's & Mr. Pet's Holdings Ltd.",
+          "is_corporation": true,
+          "corporate_role": "Holdco \u2014 100% owned by Greg Penno",
+          "credit_score": null,
+          "credit_notes": "No credit bureau report in file",
+          "sin": "[SIN-REDACTED]",
+          "dob": "[DOB-REDACTED]",
+          "government_id": null,
+          "employment_type": "self_employed",
+          "income_type": "Business operator + rental income (NNN rent from Opco; three Courtenay commercial tenants; Mission property tenant)",
+          "monthly_gross_income": null,
+          "annual_gross_income": null,
+          "income_verified": false,
+          "income_notes": "Holdco receives NNN rent from Opco plus commercial rents from Courtenay properties ($31,043/month from three commercial leases) and Mission property tenant. Opco (retail) revenues declining: $22.5M (2023) \u2192 $16.1M (2025, three consecutive net losses). Broker financial summary contained material column-labeling errors \u2014 '2025 YTD 9mo' column is actually 2026 projections; '2025 YE' column is actually 2024 actuals; actual 2025 revenue is $16.07M at 38.6% gross margin.",
+          "net_worth_notes": "Stock portfolio: $8.2M CAD (IBKR) + $3.9M USD \u2014 confirmed by broker after original submission showed $9.9M unverified. Negative combined (Holdco + Opco) equity of ($1.79M) driven by $5.1M dividend extraction.",
+          "liabilities_notes": "CRA payroll tax arrears ~$923K\u2013$1.3M being repaid at $110K/month (~5-month paydown period); BDC loan balance ~$524K with verbal-only DSCR covenant waiver (no written waiver in file); ~$46K/month cash flow deficit during CRA repayment period (~$230K total shortfall).",
+          "kyc_complete": false,
+          "kyc_notes": "Government ID absent from submission. KYC documentation outstanding per BCFSA pre-funding requirements."
+        },
+        "co_borrowers": [
+          {
+            "name": "Greg Penno",
+            "role": "Personal Guarantor / 100% Owner of Holdco",
+            "is_corporation": false,
+            "sin": "[SIN-REDACTED]",
+            "dob": "[DOB-REDACTED]",
+            "government_id": null,
+            "government_id_notes": "Not in file \u2014 flagged as missing critical doc",
+            "ownership_percentage": 100
+          }
+        ],
+        "property": {
+          "address": "South Fraser Way corridor, Abbotsford, BC",
+          "submarket": "Clearbrook Core",
+          "province": "BC",
+          "city": "Abbotsford",
+          "postal_code": null,
+          "legal_description": null,
+          "property_type": "commercial",
+          "property_subtype": "Single-storey freestanding retail building",
+          "construction_type": "Concrete block",
+          "year_built": 1986,
+          "building_age_years": 40,
+          "gross_floor_area_sf": 11160,
+          "lot_size": null,
+          "zoning": null,
+          "purchase_price": 6100000,
+          "appraised_value": 7945000,
+          "confidence_weighted_value": 6800000,
+          "bc_assessment_value": null,
+          "appraisal_firm": "Bramwell & Associates, AACI",
+          "appraisal_effective_date": "2025-11-24",
+          "appraisal_methodology": "Income approach at 4.00% cap rate on stabilized NOI",
+          "appraised_value_per_sf": 712,
+          "purchase_price_per_sf": 547,
+          "market_avg_per_sf_notes": "FVRD Abbotsford retail average ~$516/SF \u2014 appraised value is ~38% above market average",
+          "tenancy": "NNN lease in place (existing tenant is Opco \u2014 same beneficial owner as borrower; arm's-length lease income basis of appraisal disappears post-closing upon owner-occupant acquisition)",
+          "environmental_concerns": null,
+          "seismic_notes": "1986 concrete block construction; seismic reinforcement status unknown; 40-year building age implies deferred maintenance risk",
+          "title_search_available": false,
+          "title_notes": "Title search absent from file \u2014 flagged as missing critical doc per BCFSA pre-funding requirements"
+        },
+        "loan": {
+          "requested_amount": 4270000,
+          "purpose": "purchase",
+          "purpose_notes": "Owner-occupant acquisition \u2014 existing NNN tenant (Opco, same beneficial owner) buying its own building",
+          "term_months": 12,
+          "amortization_months": null,
+          "interest_rate": null,
+          "rate_type": null,
+          "payment_frequency": null,
+          "monthly_payment": null,
+          "lender_fee": null,
+          "broker_fee": null,
+          "existing_mortgages_balance": null,
+          "existing_mortgages_notes": "BDC loan ~$524K outstanding; DSCR covenant breach at 2024 year-end with verbal waiver only \u2014 no written waiver in file",
+          "loan_type": "bridge",
+          "loan_structure_notes": "12-month bridge; post-CRA payoff DSCR estimated ~$64K/month surplus (~1.9x all-in DSCR); 5-month CRA repayment window is critical vulnerability creating ~$46K/month deficit (~$230K total)"
+        },
+        "ltv": 53.74,
+        "calculated_fields": {
+          "purchase_price_ltv": 70.0,
+          "confidence_weighted_ltv": 62.79,
+          "combined_ltv": null,
+          "combined_ltv_notes": "Cannot calculate combined LTV \u2014 existing first mortgage balance (BDC ~$524K) is on Opco/Holdco operations, not necessarily registered against subject property; title search absent",
+          "gds_ratio": null,
+          "tds_ratio": null,
+          "ratio_notes": "GDS/TDS cannot be calculated \u2014 monthly gross income not determinable from documents provided; corporate borrower with complex multi-entity income structure",
+          "dscr_notes": "Post-CRA payoff all-in DSCR estimated ~1.9x (~$64K/month surplus) per broker submission. During CRA repayment period (~5 months): ~$46K/month deficit. Appraisal income approach: stabilized NOI at 4.00% cap rate \u2014 note that NNN lease income basis disappears post-closing.",
+          "noi_implied": 317800,
+          "noi_calculation_notes": "Implied NOI = $7,945,000 \u00d7 4.00% cap rate = $317,800 annually. This is based on arm's-length NNN lease \u2014 income basis partially impaired post-closing as borrower becomes owner-occupant."
+        },
+        "exit_strategy": {
+          "primary": "Refinance to senior institutional lender \u2014 National Bank identified with informal interest expressed (no offer sheet in file)",
+          "secondary": "Tier 2 credit union or Tier 3 Alt-A lender refinance",
+          "timeline_months": 12,
+          "viability_assessment": "Weak \u2014 bank refinance within 12 months not credible given three consecutive years of net losses and negative combined equity of ($1.79M). Exit depends on unproven 2026 revenue recovery and completion of CRA payoff. Tier 2/3 lender exit more realistic but still contingent on demonstrated financial recovery.",
+          "exit_triggers": [
+            "Completion of CRA payroll tax repayment (~5 months)",
+            "Demonstrated 2026 revenue recovery",
+            "Resolution of negative equity position",
+            "Removal of BDC DSCR covenant breach (written waiver required)"
+          ]
+        },
+        "compliance": {
+          "s347_criminal_code_exempt": true,
+          "s347_exemption_basis": "Commercial loan exceeding $500K to a corporation",
+          "bcfsa_registered": true,
+          "form_9_lender_disclosure": false,
+          "kyc_complete": false,
+          "aml_fintrac_flags": false,
+          "aml_notes": "No AML red flags identified; source of funds traceable to business operations and property sale proceeds",
+          "bpcpa_applicable": false,
+          "bpcpa_notes": "Not applicable \u2014 commercial transaction",
+          "missing_compliance_docs": [
+            "Form 9 lender disclosure",
+            "Government ID (KYC)",
+            "Title search",
+            "Written BDC DSCR covenant waiver"
+          ]
+        },
+        "data_gaps": [
+          "Credit bureau report \u2014 not in file",
+          "Title search \u2014 not in file",
+          "Government ID for Greg Penno \u2014 not in file",
+          "Form 9 lender disclosure \u2014 not in file",
+          "Written BDC DSCR covenant waiver \u2014 verbal only",
+          "Mortgage interest rate and fee structure not specified",
+          "Amortization schedule not specified",
+          "Zoning and legal description of subject property",
+          "Postal code / civic address (full street address not provided)",
+          "Lot size / site area",
+          "Environmental assessment / Phase I ESA",
+          "Seismic upgrade / reinforcement status of 1986 concrete block structure",
+          "Physical inventory count for Opco (inventory $2M\u2013$4M across years, never physically counted)",
+          "Formal written interest or pre-approval letter from National Bank or any takeout lender",
+          "BC Assessment value for subject property",
+          "Combined LTV calculation pending registration of existing encumbrances against subject property (title search required)",
+          "Current NNN lease terms and remaining lease duration",
+          "Courtenay commercial leases documentation ($31,043/month \u2014 late addition to file; leases not reviewed)",
+          "Mission property tenancy documentation",
+          "Stock portfolio statements (IBKR account \u2014 $8.2M CAD + $3.9M USD) \u2014 confirmed by broker but not independently verified in file"
+        ],
+        "red_flags": [
+          "APPRAISAL / VALUE: 30% spread between purchase price ($6.1M / $547/SF) and appraised value ($7.945M / $712/SF); appraised value 38% above FVRD Abbotsford retail average (~$516/SF); 4.00% cap rate on stabilized NOI using arm's-length lease that disappears post-closing",
+          "INCOME BASIS IMPAIRMENT: Borrower is existing NNN tenant \u2014 owner-occupant acquisition eliminates arm's-length lease income that underpins appraisal income approach",
+          "FINANCIAL DECLINE: Opco revenue fell 28% from $22.5M (2023) to $16.1M (2025); three consecutive years of net losses; negative combined equity ($1.79M) from $5.1M dividend extraction",
+          "CRA TAX ARREARS: $923K\u2013$1.3M in CRA payroll tax arrears being repaid at $110K/month; creates ~$46K/month cash flow deficit over ~5-month paydown (~$230K total shortfall)",
+          "EXIT STRATEGY WEAKNESS: 12-month bank refinance not credible given three years losses and negative equity; exit depends on unproven 2026 revenue recovery",
+          "BROKER SUMMARY ERRORS: Material column-labeling errors \u2014 '2025 YTD 9mo' is actually 2026 projections; '2025 YE' is actually 2024 actuals; actual 2025 revenue $16.07M at 38.6% GM (not 30.4% GM as labeled)",
+          "BDC COVENANT BREACH: DSCR covenant breach on BDC loan (~$524K) at 2024 year-end; verbal waiver only \u2014 no written waiver in file",
+          "STOCK PORTFOLIO VERIFICATION: $9.9M initially unverified; subsequently confirmed $8.2M CAD (IBKR) + $3.9M USD \u2014 net verification gap and currency inconsistency",
+          "STRUCTURAL / SEISMIC: 1986 concrete block construction; seismic reinforcement status unknown; 40-year building age implies deferred maintenance risk",
+          "INVENTORY QUALIFICATION: $2M\u2013$4M Opco inventory across all financial statement years \u2014 never physically counted",
+          "TIMING VULNERABILITY: 5-month CRA repayment window overlaps with 12-month bridge term; cash flow deficit period is critical structural weakness of deal",
+          "MISSING CRITICAL DOCS: Credit bureau, title search, government ID, Form 9 lender disclosure all absent from original submission"
+        ],
+        "confidence_notes": "Primary LTV (appraised value): 53.74%. Purchase-price LTV: 70.00%. Confidence-weighted LTV (broker-applied): 62.79%. Note: appraised value ($7,945,000) is 30% above purchase price ($6,100,000) and 38% above FVRD Abbotsford retail market average (~$516/SF). Implied NOI at 4.00% cap rate = ~$317,800/year \u2014 income basis partially impaired post-closing as NNN lease income (arm's-length) disappears upon owner-occupant acquisition. Broker financial summary contained systematic column-labeling errors; actual 2025 figures are $16.07M revenue at 38.6% gross margin (materially more favourable than mislabeled presentation). Courtenay commercial properties ($31,043/month from three leases) were a late addition to the file and materially improve Holdco income profile \u2014 leases not yet independently reviewed. Stock portfolio confirmed at $8.2M CAD (IBKR) + $3.9M USD by broker following initial unverified $9.9M figure in original submission. Post-CRA payoff DSCR estimated ~1.9x (~$64K/month surplus) \u2014 deal structure assessed as sound post-CRA but 5-month bridge vulnerability is material. Combined LTV not calculable pending title search confirming encumbrances registered against subject property. GDS/TDS not calculable \u2014 complex multi-entity corporate income structure; monthly gross income not determinable from documents provided."
+      },
+      "risk": {
+        "overall_rating": "High",
+        "overall_score": 3.45,
+        "risk_factors": [
+          {
+            "factor": "LTV Risk",
+            "rating": "Medium",
+            "weight": 0.2,
+            "explanation": "Appraised LTV is 53.74% \u2014 strong equity cushion on its face. However, the appraisal is 30% above purchase price and 38% above FVRD Abbotsford retail average. Income approach relies on an arm's-length NNN lease that disappears post-closing upon owner-occupant acquisition, materially impairing the income basis. Purchase-price LTV of 70.0% and confidence-weighted LTV of 62.79% are more credible anchors. Combined LTV not calculable pending title search. Weighting appraised LTV at a discount given appraisal concerns; effective LTV risk sits in the Medium-to-Moderate-Elevated range."
+          },
+          {
+            "factor": "Credit Risk",
+            "rating": "High",
+            "weight": 0.15,
+            "explanation": "No credit bureau report in file for either the corporate borrower or personal guarantor Greg Penno. Absence of bureau is treated as a data gap (not confirmed bad credit), but combined with three consecutive years of net losses, negative combined equity of ($1.79M) from $5.1M dividend extraction, and active CRA payroll tax arrears of $923K\u2013$1.3M, the credit profile of the enterprise is materially stressed. Stock portfolio ($8.2M CAD + $3.9M USD) partially offsets but is unconfirmed by independent statement review."
+          },
+          {
+            "factor": "Exit Strategy Risk",
+            "rating": "High",
+            "weight": 0.2,
+            "explanation": "Primary exit (National Bank refinance within 12 months) is not credible given three consecutive years of net losses, negative combined equity, and active CRA arrears. No offer letter or pre-approval in file \u2014 only informal verbal interest expressed. Tier 2/3 alt-A exit is more realistic but still contingent on demonstrated 2026 revenue recovery and full CRA payoff. Exit viability is the single most material structural risk in this deal. Multiple conditional triggers must all resolve within a 12-month window."
+          },
+          {
+            "factor": "Income Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.2,
+            "explanation": "Income structure is complex: Holdco receives NNN rent from Opco plus $31,043/month from three Courtenay commercial leases and a Mission property tenant. However, income is not independently verified \u2014 Courtenay leases were a late file addition and not yet reviewed; stock portfolio confirmed by broker only; GDS/TDS not calculable. Broker summary contained material column-labeling errors misrepresenting 2025 actuals. Opco revenue declined 28% over two years with three consecutive net losses. Post-CRA DSCR of ~1.9x is encouraging if projections materialize, but projections are unproven."
+          },
+          {
+            "factor": "Property Risk",
+            "rating": "Moderate-Elevated",
+            "weight": 0.15,
+            "explanation": "Single-tenancy 1986 concrete block freestanding retail building, 11,160 SF, Abbotsford Clearbrook Core. 40-year building age implies deferred maintenance risk. Seismic reinforcement status unknown \u2014 1986 pre-modern-code concrete block construction is a known seismic vulnerability class in BC. No Phase I ESA in file. Title search absent. Appraised value at $712/SF vs. FVRD market average of ~$516/SF raises concerns about supportable value on resale. Single-tenant owner-occupant acquisition eliminates income basis underpinning appraisal."
+          },
+          {
+            "factor": "Appraisal / Valuation Risk",
+            "rating": "High",
+            "weight": 0.1,
+            "explanation": "30% spread between purchase price ($6.1M) and appraised value ($7.945M) is a material red flag. Appraised value is 38% above FVRD Abbotsford retail average on a per-SF basis. Income approach at 4.00% cap rate on stabilized NOI uses an arm's-length NNN lease that disappears upon owner-occupant closing \u2014 the income basis is partially circular and impaired post-closing. No BC Assessment value in file to triangulate. Confidence-weighted LTV of 62.79% is the appropriate operative LTV."
+          },
+          {
+            "factor": "Compliance / Documentation Risk",
+            "rating": "High",
+            "weight": 0.1,
+            "explanation": "Multiple critical documents absent: no credit bureau, no title search, no government ID for guarantor (KYC incomplete per BCFSA pre-funding requirements), no Form 9 lender disclosure, no written BDC DSCR covenant waiver (verbal only). Broker financial summary contained systematic column-labeling errors requiring correction. These are not routine gaps \u2014 KYC incompleteness and missing title search are BCFSA pre-funding blockers. Cannot fund until resolved."
+          }
+        ],
+        "mitigating_factors": [
+          "Confidence-weighted LTV of 62.79% and purchase-price LTV of 70.0% provide meaningful equity cushion even discounting aggressive appraisal",
+          "Post-CRA payoff DSCR estimated at ~1.9x (~$64K/month surplus) \u2014 deal structure is sound if CRA repayment completes as scheduled within ~5 months",
+          "Holdco receives $31,043/month from three Courtenay commercial NNN leases \u2014 diversified income stream materially improves cash flow profile beyond Opco alone",
+          "Substantial liquid asset backstop: stock portfolio confirmed at $8.2M CAD + $3.9M USD (IBKR) \u2014 provides meaningful guarantor net worth support",
+          "CRA arrears on active repayment plan at $110K/month with ~5-month paydown window \u2014 liability is finite and resolving",
+          "Commercial bridge loan to corporation \u2014 exempt from s.347 Criminal Code, BPCPA not applicable, simplified regulatory treatment",
+          "BCFSA-registered broker \u2014 deal is within regulated framework",
+          "Personal guarantee from Greg Penno (100% owner) provides recourse beyond corporate entity",
+          "Secondary exit via Tier 2/3 alt-A lender is credible once CRA resolved and financial recovery demonstrated",
+          "Actual 2025 financials (corrected) show 38.6% gross margin \u2014 materially more favourable than mislabeled broker presentation suggested"
+        ],
+        "aggravating_factors": [
+          "No credit bureau for borrower entity or personal guarantor",
+          "Three consecutive years of net losses at Opco; 28% revenue decline from 2023 to 2025",
+          "Negative combined Holdco + Opco equity of ($1.79M) driven by $5.1M dividend extraction",
+          "CRA payroll tax arrears $923K\u2013$1.3M creating ~$46K/month cash flow deficit during ~5-month repayment window (~$230K total shortfall)",
+          "Primary exit strategy (National Bank refi within 12 months) not credible \u2014 no offer letter, three years of losses, negative equity",
+          "Appraisal 30% above purchase price and 38% above market average; income basis impaired post-closing by owner-occupant acquisition",
+          "BDC DSCR covenant breach with verbal waiver only \u2014 no written waiver in file",
+          "KYC incomplete: government ID absent for guarantor \u2014 BCFSA pre-funding blocker",
+          "Title search absent \u2014 BCFSA pre-funding blocker; combined LTV not calculable",
+          "Broker financial summary contained material systematic column-labeling errors misrepresenting year-over-year financial trajectory",
+          "1986 concrete block construction \u2014 seismic reinforcement unknown, deferred maintenance risk, no Phase I ESA",
+          "Opco inventory ($2M\u2013$4M) never physically counted across all financial statement years"
+        ],
+        "ltv_risk": "Medium",
+        "credit_risk": "High",
+        "exit_strategy_risk": "High",
+        "income_risk": "Moderate-Elevated",
+        "property_risk": "Moderate-Elevated",
+        "risk_summary": "This is a 12-month bridge loan to a holdco vehicle (Mr. P's & Mr. Pet's Holdings Ltd., beneficially owned by Greg Penno) financing the owner-occupant acquisition of a 1986 freestanding retail building in Abbotsford, BC. The deal presents a multi-layered risk profile that is partially mitigated by equity cushion and a diversified Holdco income base, but carries several material structural vulnerabilities requiring active conditions precedent and monitoring.\n\nThe appraised LTV of 53.74% appears strong; however, the appraised value of $7.945M ($712/SF) is 30% above the $6.1M purchase price and 38% above the FVRD Abbotsford retail market average of approximately $516/SF. The income approach at a 4.00% cap rate uses an arm's-length NNN lease that is extinguished upon closing when the existing tenant (Opco, same beneficial owner) becomes the owner-occupant \u2014 materially impairing the appraisal's income basis. The confidence-weighted LTV of 62.79% and purchase-price LTV of 70.0% are the operative risk anchors for this analysis.\n\nThe borrower's enterprise financial position is stressed: Opco revenue has declined 28% over two years ($22.5M in 2023 to $16.1M in 2025) with three consecutive net losses, and combined Holdco/Opco equity is negative ($1.79M) as a result of $5.1M in dividend extractions. Active CRA payroll tax arrears of $923K\u2013$1.3M are being repaid at $110K/month, creating a ~$46K/month cash flow deficit during the approximately 5-month repayment window (~$230K total shortfall), which overlaps directly with the 12-month bridge term. A BDC loan (~$524K) carries an unresolved DSCR covenant breach with only a verbal waiver \u2014 no written waiver is in file.\n\nThe primary exit strategy \u2014 institutional refinance (National Bank) within 12 months \u2014 is not credible given the current financial profile. No offer letter or pre-approval exists, only informal verbal interest. The realistic exit path is a Tier 2 or alt-A lender refinance, contingent on completed CRA payoff, demonstrated 2026 revenue recovery, and restoration of a positive equity position. Post-CRA, the DSCR is estimated at approximately 1.9x (~$64K/month surplus), which supports eventual refinanceability if the revenue trajectory stabilizes.\n\nKey mitigants include the meaningful equity cushion (62.79% confidence-weighted LTV), a $31,043/month Holdco income stream from three Courtenay commercial NNN leases (diversified beyond Opco), a substantial personal liquid asset backstop (stock portfolio $8.2M CAD + $3.9M USD confirmed by broker), a personal guarantee from Greg Penno, and the finite, resolving nature of the CRA liability. These mitigants prevent escalation to Very High but do not offset the compounding of a questionable appraisal, absent exit strategy documentation, negative enterprise equity, and multiple pre-funding compliance blockers.\n\nThis deal is fundable subject to resolution of critical conditions: KYC (government ID), title search, written BDC covenant waiver, Form 9 disclosure, independent verification of Courtenay leases, and a credible written exit commitment or fallback lender confirmation. The 5-month CRA repayment window should be monitored as a performance trigger. Rate premium of 250\u2013300 bps above standard private commercial bridge rates is warranted.",
+        "recommended_rate_premium_bps": 275,
+        "recommended_conditions": [
+          "BCFSA pre-funding blocker: Obtain and verify government-issued photo ID for Greg Penno to complete KYC \u2014 mandatory prior to funding",
+          "BCFSA pre-funding blocker: Obtain full title search confirming all registered encumbrances against subject property; calculate confirmed combined LTV inclusive of BDC loan if registered against title",
+          "BCFSA pre-funding blocker: Execute and deliver Form 9 lender disclosure to borrower prior to funding",
+          "Obtain written BDC DSCR covenant waiver \u2014 verbal waiver is not acceptable; confirm BDC is not in default or acceleration position",
+          "Order independent appraisal review or second appraisal opinion addressing (a) 30% spread vs. purchase price, (b) $712/SF vs. ~$516/SF market average, and (c) income approach validity post owner-occupant acquisition",
+          "Obtain and independently review all three Courtenay commercial NNN lease agreements ($31,043/month) \u2014 confirm tenant identities, lease terms, remaining duration, and renewal options",
+          "Obtain and independently review Mission property tenancy documentation",
+          "Obtain and independently verify IBKR stock portfolio statements for Greg Penno ($8.2M CAD + $3.9M USD) \u2014 broker confirmation only is insufficient for lender underwriting",
+          "Obtain independent credit bureau reports for Greg Penno (personal) and confirm no personal bankruptcies, judgments, or collections",
+          "Commission Phase I Environmental Site Assessment on subject property prior to funding",
+          "Obtain seismic reinforcement history and building condition report for 1986 concrete block structure; consider holdback or reserve for deferred maintenance",
+          "Require CRA repayment schedule confirmation and establish performance covenant: provide monthly evidence of CRA payment compliance during bridge term; trigger review at 90 days if payments miss",
+          "Obtain current NNN lease agreement (Opco as tenant) including remaining term and any renewal/termination provisions \u2014 critical for understanding income continuity post-closing",
+          "Require monthly financial reporting from Opco during bridge term: revenue, gross margin, and net income vs. 2026 projections \u2014 2026 recovery is a prerequisite for any institutional exit",
+          "Obtain legal description, zoning confirmation, and full civic address for subject property",
+          "Confirm Phase I ESA or obtain waiver acknowledgment from lender if proceeding without",
+          "Establish cash management covenant: borrower must maintain minimum operating reserve (suggest $150K\u2013$200K) in a designated account during CRA repayment window to backstop the ~$46K/month shortfall period",
+          "Obtain or require letter of interest (not just verbal) from at least one Tier 2/alt-A takeout lender within 90 days of funding as evidence of exit path progress"
+        ]
+      },
+      "lender": {
+        "recommended_lenders": [
+          {
+            "lender_name": "Fisgard Asset Management",
+            "rate": "10.99%\u201311.99%",
+            "term": "12 months",
+            "max_ltv": "65%",
+            "fit": "strong",
+            "match_reasons": [
+              "BC-based private MIC with deep Abbotsford/Fraser Valley commercial bridge experience",
+              "purchase-price LTV of 70.0% is at the edge but confidence-weighted 62.79% fits within 65% max with conditions",
+              "12-month bridge term aligns precisely with Fisgard's core product structure",
+              "commercial freestanding retail on South Fraser Way corridor is a familiar asset class for this lender",
+              "personal guarantee from Greg Penno plus $8.2M CAD stock portfolio backstop meets guarantor net-worth requirements"
+            ]
+          },
+          {
+            "lender_name": "Trez Capital",
+            "rate": "11.49%\u201312.49%",
+            "term": "12 months",
+            "max_ltv": "65%",
+            "fit": "moderate",
+            "match_reasons": [
+              "institutional private lender with BC commercial bridge capacity at this loan size ($4.27M)",
+              "confidence-weighted LTV of 62.79% fits within 65% hard ceiling with appraisal review condition",
+              "Trez pricing band absorbs the recommended 275 bps risk premium above standard private commercial bridge rates",
+              "accustomed to complex corporate borrower structures including holdco/opco arrangements",
+              "deal complexity and multi-entity income profile (Courtenay leases, Opco NNN) requires lender with dedicated underwriting capacity that Trez provides"
+            ]
+          },
+          {
+            "lender_name": "Romspen Investment Corporation",
+            "rate": "11.99%\u201313.49%",
+            "term": "12 months",
+            "max_ltv": "65%",
+            "fit": "moderate",
+            "match_reasons": [
+              "national private mortgage fund with appetite for high-complexity BC commercial bridge loans in the $3M\u2013$10M range",
+              "3-year Opco revenue decline and negative combined equity accepted by Romspen where hard asset coverage and guarantor liquidity are strong",
+              "$8.2M CAD plus $3.9M USD stock portfolio backstop and personal guarantee satisfy Romspen's guarantor net-worth threshold",
+              "rate ceiling accommodates the full 275 bps risk premium flagged in risk assessment without exceeding BC private lending norms",
+              "known tolerance for deals with active CRA repayment plans where repayment schedule is documented and finite"
+            ]
+          },
+          {
+            "lender_name": "Equitable Bank (Commercial Alt-A Division)",
+            "rate": "9.99%\u201311.49%",
+            "term": "12 months",
+            "max_ltv": "65%",
+            "fit": "weak",
+            "match_reasons": [
+              "most competitive rate band of shortlisted lenders if KYC, title search, and credit bureau gaps are resolved prior to submission",
+              "BC commercial freestanding retail within Fraser Valley is an eligible property type under Equitable's alt-A commercial mandate",
+              "requires credit bureau \u2014 currently absent \u2014 making this lender conditional on full document cure before approach",
+              "three consecutive net losses and negative combined equity will require significant compensating factors presentation; viable only post-CRA payoff confirmation and lease verification"
+            ]
+          }
+        ]
+      },
+      "compliance": {
+        "overall_status": "fail",
+        "checks": [
+          {
+            "check_name": "s.347 Criminal Code EAR",
+            "category": "Criminal Code",
+            "status": "clear",
+            "detail": "Commercial loan of $4,270,000 to a corporation (Mr. P's & Mr. Pet's Holdings Ltd.). s.347 exemption applies per Criminal Code s.347(2) \u2014 commercial loan exceeding $500K to a corporation. Interest rate and fee structure not specified in file; however, EAR calculation is moot under the applicable exemption. Exemption confirmed in extractor compliance output.",
+            "action_required": null
+          },
+          {
+            "check_name": "BCFSA Pre-Funding Requirements",
+            "category": "BCFSA",
+            "status": "fail",
+            "detail": "Multiple mandatory pre-funding items are absent from the file. (1) Form 9 lender disclosure: not in file \u2014 required for all private mortgages under Mortgage Brokers Act. (2) Title search: absent \u2014 BCFSA pre-funding blocker; combined LTV cannot be calculated and encumbrances against subject property are unconfirmed. (3) Government-issued photo ID for Greg Penno (personal guarantor, 100% beneficial owner): not in file \u2014 KYC incomplete per BCFSA pre-funding standards. (4) Cost of credit disclosure: not confirmed as present. (5) KYC documentation: flagged incomplete in extractor output. Broker registration confirmed current and active with BCFSA. No conflict of interest disclosure noted as required or missing. Three of the five absent items are independently classified as pre-funding blockers \u2014 this deal cannot fund in its current state.",
+            "action_required": "Three BCFSA pre-funding blockers must be resolved before funding: (1) Execute and deliver Form 9 lender disclosure to borrower. (2) Obtain complete title search confirming all registered encumbrances against subject property. (3) Obtain government-issued photo ID for Greg Penno. Confirm cost of credit disclosure is prepared and delivered. Josh to review and sign off on all pre-funding conditions prior to advancing."
+          },
+          {
+            "check_name": "FINTRAC KYC",
+            "category": "AML",
+            "status": "warning",
+            "detail": "Government-issued photo ID is absent for Greg Penno (personal guarantor and 100% beneficial owner of corporate borrower) \u2014 this is a KYC gap under FINTRAC identity verification requirements. Beneficial ownership is disclosed: Greg Penno confirmed as 100% owner of Holdco. Source of funds documented as business operations and property sale proceeds per broker submission \u2014 traceable to registered entities with no AML red flags identified in extractor output. No PEP or sanctions hits noted. No suspicious transaction indicators identified. KYC is materially incomplete due to missing government ID; however, no indicators of deceptive identity or fraudulent source of funds are present. Extractor confirms no AML flags. L0 Human Only verification required per FINTRAC \u2014 this flag does not constitute a compliance determination.",
+            "action_required": "Obtain government-issued photo ID for Greg Penno prior to funding to complete FINTRAC identity verification. Josh to conduct L0 Human Only AML/KYC review and sign off \u2014 output of this tool is a draft screening flag only and is NOT a FINTRAC compliance determination."
+          },
+          {
+            "check_name": "BPCPA Consumer Protection",
+            "category": "BPCPA",
+            "status": "clear",
+            "detail": "BPCPA does not apply. This is a commercial mortgage transaction \u2014 borrower is a corporation (Mr. P's & Mr. Pet's Holdings Ltd.) acquiring a commercial property. BPCPA consumer protection requirements, including cost of credit disclosure under BPCPA, are not triggered. Confirmed in extractor compliance output: bpcpa_applicable = false.",
+            "action_required": null
+          },
+          {
+            "check_name": "Suitability Assessment",
+            "category": "Suitability",
+            "status": "warning",
+            "detail": "Suitability is materially qualified. The 12-month bridge structure has identifiable logic \u2014 post-CRA payoff DSCR estimated at ~1.9x (~$64K/month surplus) is serviceable if projections materialize \u2014 but the deal carries compounding vulnerabilities that challenge suitability for this product as currently documented. (1) EXIT STRATEGY: Primary exit (National Bank refi within 12 months) is not credible given three consecutive years of Opco net losses, negative combined equity of ($1.79M), and active CRA arrears totalling $923K\u2013$1.3M. No offer letter or pre-approval in file. Tier 2/alt-A exit is more realistic but contingent on unproven 2026 revenue recovery and CRA payoff completion. (2) CASH FLOW DURING BRIDGE: 5-month CRA repayment window creates ~$46K/month deficit (~$230K total shortfall) overlapping the bridge term \u2014 a structural vulnerability. (3) FINANCIAL DECLINE: Opco revenue down 28% over two years; three consecutive net losses; negative enterprise equity driven by $5.1M dividend extraction. (4) INCOME VERIFICATION: Holdco income not independently verified; Courtenay leases ($31,043/month) are a late file addition, not yet reviewed; GDS/TDS not calculable. (5) APPRAISAL RELIANCE: Appraised value 30% above purchase price and 38% above FVRD market average; income basis impaired post-closing by owner-occupant acquisition eliminating arm's-length NNN lease. Mitigants include confidence-weighted LTV of 62.79%, substantial guarantor liquid assets ($8.2M CAD + $3.9M USD stock portfolio, broker-confirmed), personal guarantee from Greg Penno, and finite CRA liability with active repayment. Suitability is not a clear fail \u2014 the deal has a plausible post-CRA structure \u2014 but multiple material conditions must be satisfied before suitability can be affirmed.",
+            "action_required": "Josh to assess suitability against lender's risk appetite given: (1) absent credible exit documentation \u2014 require written letter of interest from at least one takeout lender within 90 days of funding; (2) 5-month cash flow deficit period \u2014 consider requiring $150K\u2013$200K operating reserve covenant; (3) independent verification of Courtenay lease income and stock portfolio statements before relying on either as underwriting support; (4) appraisal review or second opinion addressing the 30% spread vs. purchase price and impaired income basis post-closing."
+          },
+          {
+            "check_name": "CRA Tax Arrears / Financial Covenant",
+            "category": "CRA / Financial Covenants",
+            "status": "warning",
+            "detail": "Active CRA payroll tax arrears of $923K\u2013$1.3M are being repaid at $110K/month with an estimated ~5-month paydown window. Repayment plan is documented and in-motion per extractor output \u2014 remediation is active, not stalled. However, the repayment window creates a ~$46K/month cash flow deficit (~$230K total shortfall) during the bridge term, which is a material structural vulnerability. Separately, BDC DSCR covenant breach at 2024 year-end is confirmed with verbal waiver only \u2014 no written waiver in file. Verbal waivers are not acceptable for underwriting purposes; the absence of a written waiver leaves the BDC loan in a technically unresolved covenant breach position. Both items are flagged for reviewer attention \u2014 neither has stalled, but the BDC waiver gap is an outstanding documentation deficiency.",
+            "action_required": "Josh to confirm: (1) CRA repayment schedule documentation is in file and current; establish monitoring covenant requiring monthly evidence of CRA payment compliance during bridge term. (2) Obtain written BDC DSCR covenant waiver \u2014 verbal waiver is not acceptable; confirm BDC is not in default, acceleration, or demand position. These are conditions precedent to funding."
+          }
+        ],
+        "bcfsa_disclosure_required": true,
+        "bcfsa_notes": [
+          "Form 9 lender disclosure required \u2014 not in file; BCFSA pre-funding blocker",
+          "Government-issued photo ID required for Greg Penno (personal guarantor / beneficial owner) \u2014 not in file; BCFSA pre-funding blocker and FINTRAC KYC gap",
+          "Title search required before funding \u2014 absent from file; BCFSA pre-funding blocker; combined LTV not calculable",
+          "Cost of credit disclosure required \u2014 confirm prepared and delivered",
+          "KYC documentation incomplete per BCFSA pre-funding standards",
+          "Broker registration confirmed current and active with BCFSA",
+          "BPCPA not applicable \u2014 commercial transaction to a corporation"
+        ],
+        "aml_flags": [
+          "Government-issued photo ID absent for Greg Penno \u2014 FINTRAC identity verification incomplete; not an AML red flag per se but a KYC documentation gap requiring resolution before funding",
+          "Stock portfolio ($8.2M CAD + $3.9M USD, IBKR) confirmed by broker only \u2014 independent statement verification not in file; source of funds partially unverified at independent document level",
+          "Courtenay commercial lease income ($31,043/month) is a late file addition \u2014 leases not independently reviewed; income source traceable but not yet confirmed by document review"
+        ],
+        "kyc_checklist_gaps": [
+          "Government-issued photo ID for Greg Penno (personal guarantor, 100% beneficial owner) \u2014 not in file",
+          "No credit bureau report for Greg Penno (personal) or Mr. P's & Mr. Pet's Holdings Ltd. (corporate borrower)",
+          "IBKR stock portfolio statements not independently verified \u2014 broker confirmation only ($8.2M CAD + $3.9M USD)",
+          "Courtenay commercial lease agreements not independently reviewed \u2014 $31,043/month income not yet confirmed by document review",
+          "Mission property tenancy documentation not in file",
+          "Beneficial ownership: disclosed (Greg Penno, 100% owner) \u2014 no gap on beneficial ownership disclosure itself"
+        ],
+        "suspicious_transaction_indicators": [],
+        "suitability_concerns": [
+          "Primary exit strategy (National Bank refi within 12 months) not credible \u2014 three consecutive years of net losses, negative combined equity ($1.79M), active CRA arrears; no offer letter or pre-approval in file",
+          "5-month CRA repayment window creates ~$46K/month cash flow deficit (~$230K total shortfall) overlapping 12-month bridge term \u2014 structural cash flow vulnerability",
+          "Opco revenue declined 28% (2023\u20132025); three consecutive net losses; negative combined Holdco + Opco equity driven by $5.1M dividend extraction",
+          "Appraisal 30% above purchase price ($6.1M vs. $7.945M) and 38% above FVRD Abbotsford retail market average (~$516/SF vs. $712/SF); income approach income basis impaired post-closing upon owner-occupant acquisition eliminating arm's-length NNN lease",
+          "Income not independently verified \u2014 Holdco Courtenay lease income ($31,043/month) late file addition; GDS/TDS not calculable; stock portfolio broker-confirmed only",
+          "BDC DSCR covenant breach unresolved in writing \u2014 verbal waiver only",
+          "1986 concrete block construction; seismic reinforcement status unknown; no Phase I ESA; 40-year building implies deferred maintenance risk",
+          "Broker financial summary contained material systematic column-labeling errors misrepresenting 2025 actuals vs. 2026 projections \u2014 raises diligence quality concern",
+          "Opco inventory ($2M\u2013$4M across all years) never physically counted \u2014 balance sheet asset unverified"
+        ]
+      }
+    }
+  }
+]
