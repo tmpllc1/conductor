@@ -158,3 +158,29 @@ Input → [1. Pydantic Schema] → [2. Behavioral Watchdog] → [3. Gemini Verif
 | # | Date | Decision | Rationale |
 |---|------|----------|-----------|
 | 1 | 2026-04-08 | Skeleton scaffolded | Initial directory structure, git repo, requirements.txt, CLAUDE.md created on conductor-tor1. No logic yet — structure only. |
+
+
+## n8n Code Node Credential Rule
+
+n8n Code nodes MUST read credentials via `$env.VAR_NAME` (n8n's native accessor) — never inline as string literals, and not `process.env.VAR_NAME` (use the n8n-native path).
+
+**Required configuration** (`/opt/n8n/docker-compose.yml`, n8n service `environment:` block):
+- `N8N_BLOCK_ENV_ACCESS_IN_NODE=false`
+- Each credential var listed: `- NOTION_TOKEN=${NOTION_TOKEN}`, `- TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}`, `- ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}`
+
+**Env source of truth**: `/opt/conductor/.env` (symlinked to `/opt/n8n/.env`).
+
+**Anti-pattern** (gitleaks pre-commit blocks):
+```js
+var NOTION_TOKEN = "ntn_xyz...";
+const ANTHROPIC_KEY = "sk-ant-api03-...";
+```
+
+**Correct**:
+```js
+var NOTION_TOKEN = $env.NOTION_TOKEN;
+var TELEGRAM_TOKEN = $env.TELEGRAM_BOT_TOKEN;   // JS var name can differ from env var name
+var ANTHROPIC_KEY = $env.ANTHROPIC_API_KEY;
+```
+
+Established: INF-137 (Apr 17, 2026). Applies to all n8n workflow Code nodes.
