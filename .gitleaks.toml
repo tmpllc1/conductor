@@ -1,0 +1,35 @@
+title = "Conductor gitleaks config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "telegram-bot-token"
+description = "Telegram Bot API token"
+regex = '''\b[0-9]{8,12}:AA[A-Za-z0-9_-]{32,35}\b'''
+tags = ["telegram", "secret"]
+
+[[rules]]
+id = "notion-api-token"
+description = "Notion API integration token"
+regex = '''\bntn_[A-Za-z0-9]{40,50}\b'''
+tags = ["notion", "secret"]
+
+[allowlist]
+description = "Vendor code, fixtures, live env, and self-reference"
+paths = [
+  '''\.env$''',
+  '''\.env\.example$''',
+  '''\.env\.bak-.*''',
+  '''tests/fixtures/.*''',
+  '''docs/examples/.*''',
+  '''\.gitleaks\.toml$''',
+  '''\.venv/.*''',
+  '''node_modules/.*''',
+]
+regexes = [
+  '''EXAMPLE_[A-Z_]+''',
+  '''your-.*-token-here''',
+  '''<new>''',
+  '''\[REDACTED:[a-z_]+\]''',
+]

@@ -6,3 +6,9 @@ __pycache__/
 *.pyo
 .pytest_cache/
 .venv/
+
+# Env backups and pre-rotation snapshots (INF-132 - appended unconditionally)
+.env.bak-*
+.env.local
+*.bak
+*.bak-pre-*
