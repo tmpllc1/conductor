@@ -15,6 +15,13 @@ description = "Notion API integration token"
 regex = '''\bntn_[A-Za-z0-9]{40,50}\b'''
 tags = ["notion", "secret"]
 
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API key"
+regex = '''\bsk-ant-(?:api|admin)\d{2}-[A-Za-z0-9_-]{90,}\b'''
+keywords = ["sk-ant-"]
+tags = ["anthropic", "secret"]
+
 [allowlist]
 description = "Vendor code, fixtures, live env, and self-reference"
 paths = [
