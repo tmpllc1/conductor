@@ -36,10 +36,11 @@ These must apply immediately at session start, without waiting for Skill load:
 Located in `.claude/skills/`:
 - **conductor-git-discipline** — git, rotation, verification hygiene. Encodes INF-137, INF-144, and April 17 Telegram lessons.
 - **conductor-quality-protocols** — COVE, VF-VERIFY, confidence markers, RAT GATE, inversion gate, sycophancy check, drift check, injection resistance. Mirrors claude.ai User Preferences v7.4.
+- **n8n-conductor** — n8n workflow authoring, REST API usage, Code node sandbox patterns, 6-field cron, HTTP body format, idempotency and trace IDs.
+- **notion-mcp-conductor** — Notion MCP parent format, update_page shape, nine-database inventory, Task Change Log rule, search-before-create, scouting and archive protocols.
+- **conductor-vps-ops** — SSH, systemd, Docker, pytest, Caddy, UFW patterns on conductor-tor1. Includes the two-mechanism env refresh rule (systemd restart vs Docker force-recreate).
 
 Load and apply these when their trigger conditions fire. Do not require explicit user prompting.
-
-Additional Skills planned (Phase B of Wave 1): `n8n-conductor`, `notion-mcp-conductor`, `conductor-vps-ops`.
 
 ---
 
