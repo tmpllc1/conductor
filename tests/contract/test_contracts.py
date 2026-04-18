@@ -80,26 +80,9 @@ POSITIVE_CASES = [
     pytest.param("compliance", "compliance_valid.json", id="compliance"),
 ]
 
-# Known drift between Pydantic and the JS mirror as of 2026-04-17:
-#   RiskRating:       Pydantic {low,moderate,high,very_high}
-#                     JS       {Low, Low-Moderate, Medium, Moderate-Elevated,
-#                               High, Very High}
-#   RiskOutput.score: Pydantic 0-100, JS 1.0-5.0
-# The risk positive fixture uses Pydantic-valid values; the JS mirror will
-# reject them until schemas/deal_swarm.py is brought in line with the
-# deployed prompts. Marked xfail with reason so the drift stays visible.
 JS_POSITIVE_CASES = [
     pytest.param("extractor", "extractor_valid.json", id="extractor"),
-    pytest.param(
-        "risk", "risk_valid.json",
-        id="risk",
-        marks=pytest.mark.xfail(
-            reason="Pydantic/JS divergence: RiskRating scale & score range. "
-                   "Fix schemas/deal_swarm.py to 6-level TitleCase + 1.0-5.0 "
-                   "score, then un-xfail.",
-            strict=True,
-        ),
-    ),
+    pytest.param("risk", "risk_valid.json", id="risk"),
     pytest.param("lender", "lender_valid.json", id="lender"),
     pytest.param("compliance", "compliance_valid.json", id="compliance"),
 ]

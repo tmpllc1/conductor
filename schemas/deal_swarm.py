@@ -33,10 +33,12 @@ class DealVerdict(str, Enum):
 
 
 class RiskRating(str, Enum):
-    LOW = "low"
-    MODERATE = "moderate"
-    HIGH = "high"
-    VERY_HIGH = "very_high"
+    LOW = "Low"
+    LOW_MODERATE = "Low-Moderate"
+    MEDIUM = "Medium"
+    MODERATE_ELEVATED = "Moderate-Elevated"
+    HIGH = "High"
+    VERY_HIGH = "Very High"
 
 
 class PropertyType(str, Enum):
@@ -231,8 +233,8 @@ class RiskOutput(BaseModel):
 
     overall_rating: RiskRating
     overall_score: float = Field(
-        ge=0, le=100,
-        description="Numeric risk score: 0=lowest risk, 100=highest risk"
+        ge=1.0, le=5.0,
+        description="Numeric risk score on 1-5 scale: 1.0=lowest risk, 5.0=highest risk"
     )
     risk_factors: list[RiskFactor] = Field(min_length=1)
 
@@ -263,17 +265,24 @@ class RiskOutput(BaseModel):
 
     @model_validator(mode="after")
     def validate_consistency(self) -> "RiskOutput":
-        """Ensure overall_rating is consistent with overall_score."""
+        """Ensure overall_rating is consistent with overall_score on the 1-5 scale.
+
+        Bands (per prompts/stage2_risk.md):
+            Low 1.0-1.5, Low-Moderate 1.5-2.5, Medium 2.5-3.0,
+            Moderate-Elevated 3.0-3.5, High 3.5-4.5, Very High 4.5-5.0.
+        This is a loose contradiction check — LLM wiggle room is allowed
+        within adjacent bands; only score/rating pairs that cross two or
+        more tiers are rejected.
+        """
         score = self.overall_score
         rating = self.overall_rating
-        # Loose consistency check — LLM should be roughly aligned
-        if score < 25 and rating in (RiskRating.HIGH, RiskRating.VERY_HIGH):
+        if score < 2.5 and rating in (RiskRating.HIGH, RiskRating.VERY_HIGH):
             raise ValueError(
-                f"Inconsistent: overall_score={score} but overall_rating={rating}"
+                f"Inconsistent: overall_score={score} (expected >=2.5 for {rating.value})"
             )
-        if score > 75 and rating in (RiskRating.LOW,):
+        if score > 3.5 and rating in (RiskRating.LOW, RiskRating.LOW_MODERATE):
             raise ValueError(
-                f"Inconsistent: overall_score={score} but overall_rating={rating}"
+                f"Inconsistent: overall_score={score} (expected <=3.5 for {rating.value})"
             )
         return self
 

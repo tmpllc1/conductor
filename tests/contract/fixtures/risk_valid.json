@@ -1,19 +1,19 @@
 {
-  "overall_rating": "moderate",
-  "overall_score": 62.5,
+  "overall_rating": "Moderate-Elevated",
+  "overall_score": 3.1,
   "risk_factors": [
     {
       "factor": "High LTV",
-      "rating": "moderate",
+      "rating": "Moderate-Elevated",
       "weight": 0.35,
       "explanation": "Requested LTV of 75% on a non-owner-occupied industrial property exceeds typical prime lender thresholds."
     }
   ],
-  "ltv_risk": "moderate",
-  "credit_risk": "moderate",
-  "exit_strategy_risk": "moderate",
-  "income_risk": "low",
-  "property_risk": "moderate",
+  "ltv_risk": "Moderate-Elevated",
+  "credit_risk": "Medium",
+  "exit_strategy_risk": "Moderate-Elevated",
+  "income_risk": "Low",
+  "property_risk": "Medium",
   "risk_summary": "Deal presents moderate-elevated risk driven primarily by LTV and exit strategy uncertainty; mitigated by corporate borrower and strong property location.",
   "mitigating_factors": ["Corporate borrower with established operating history", "Prime Vancouver industrial submarket"],
   "aggravating_factors": ["Requested LTV above typical private lender threshold"],
