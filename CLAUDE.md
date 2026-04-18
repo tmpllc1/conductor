@@ -1,186 +1,126 @@
-# The Conductor — CLAUDE.md
+# Conductor — Claude Code Operating Context
 
-## Identity
+**Project:** The Conductor — AI-powered automation platform for Verifund Capital (BCFSA-registered mortgage brokerage), Verivest Growth Fund, Verilytics, and adjacent entities. Regulated-industry workload; operational discipline and audit-trail integrity are non-negotiable.
 
-The Conductor is an autonomous AI operations agent for:
-- **Verifund Capital Corp** — BCFSA-licensed mortgage brokerage
-- **Verivest Growth Fund** — private mortgage investment fund
-- **Verilytics** — data analytics platform
-- **SBF (Sexy Bitch Fitness)** — coaching & bodybuilding business
-- **Software projects** — internal tooling and integrations
+**Build state:** Phase 2 Stage 2 deployed April 17, 2026. Zero gate blockers currently. Next milestone: Tier 1 A-list items through first live deal via VF-250g, then Phase 3 (coding agents).
 
-Runs 24/7 on conductor-tor1 (68.183.194.128). Not a chatbot — an orchestration engine that executes cycles, routes decisions, and enforces safety gates.
+---
 
-## Owner
+## Tool priority ladder
 
-Josh Liberman — jliberman@verifundcapital.com
+Use in order. Only fall back to a lower tier when a higher tier genuinely cannot do the task.
 
-All escalations, approvals, and L0 decisions route to Josh via Telegram.
+1. **Claude Code via SSH to VPS** — default for all file edits, testing, commits, n8n API calls, systemd ops. SSH target in local config; skip `scp`, build directly on VPS.
+2. **n8n REST API** — loopback `http://127.0.0.1:5678/api/v1/` (VPS-local, preferred for SSH/Conductor sessions) or external `https://conductor.verifundcapital.com/api/v1/` (TLS via Caddy). Both enforce `X-N8N-API-KEY`.
+3. **MCP tools in claude.ai** (Notion, Gmail, Zoho) — for knowledge queries, task updates, CRM reads during interactive sessions.
+4. **Manual action by human** — only for OAuth consent flows, visual UI arrangement, or gate evaluation decisions.
 
-## Tech Stack
+---
 
-| Component | Technology |
-|-----------|-----------|
-| Language | Python 3.12 |
-| HTTP client | httpx |
-| Messaging | python-telegram-bot |
-| AI SDK | anthropic (Claude API) |
-| Validation | pydantic |
-| Scheduling | APScheduler with SQLAlchemyJobStore |
-| Storage | SQLite × 3 (state.db, audit.db, snapshots.db) |
-| PII scrubbing | Presidio (analyzer + anonymizer) |
-| Secrets | sops (encrypted at rest) |
+## Critical inline rules
 
-## Architecture
+These must apply immediately at session start, without waiting for Skill load:
 
-Three-layer stack. Each layer has a single responsibility:
+1. **Git discipline:** never `git add` without first running `git diff HEAD <file>`. Never `git add .` or `git add -A` on Conductor. Full protocol in `.claude/skills/conductor-git-discipline/SKILL.md`.
+2. **Token hygiene:** never paste full tokens, never `cat`/`tail` on token files. See git-discipline Skill.
+3. **Exit-code capture:** use `${PIPESTATUS[0]}`, not piped `$?`. See git-discipline Skill.
+4. **Model string:** always `claude-sonnet-4-6` across Conductor code and n8n workflows. Sonnet 4 retires June 15, 2026; degraded availability starts May 14.
+5. **PUBLIC repo flag:** `github.com/tmpllc1/conductor` is public. Assume every line of every committed file is publicly visible. Scan every diff before push for secrets, PII, or identifying details.
+6. **Docker env refresh:** `.env` changes require `docker compose up -d --force-recreate n8n` from `/opt/n8n/`. `/opt/n8n/.env` is a symlink to `/opt/conductor/.env`.
+7. **Prove-before-done:** every change to production state includes a verification line. No "done" without proof. See quality-protocols Skill.
 
-```
-┌─────────────────────────────────┐
-│  Notion (Coordination Brain)    │  Source of truth: tasks, specs,
-│  Dashboards, specs, cycle logs  │  decision logs, deal pipeline
-├─────────────────────────────────┤
-│  Conductor (Orchestration)      │  This codebase. Reads Notion,
-│  Python on conductor-tor1       │  routes models, enforces gates,
-│  Claude API + Telegram          │  writes audit logs
-├─────────────────────────────────┤
-│  n8n (Automation Backbone)      │  Webhook-driven workflows.
-│  Docker on same VPS             │  Zoho, Google Workspace, Notion
-│  https://conductor.verifundcapital.com  │  API integrations
-└─────────────────────────────────┘
-```
+---
 
-**Data flow:** Notion → Conductor reads context → Conductor decides action → n8n executes via webhook → Conductor logs result → Notion updated.
+## Skills available
 
-**Communication channels:**
-- **Telegram** — primary interface with Josh (approvals, digests, alerts)
-- **Notion** — reads task boards, writes cycle logs and decision records
-- **Zoho CRM** — reads/writes deal pipeline data via n8n
-- **Google Workspace** — calendar, email drafts, document access via n8n
+Located in `.claude/skills/`:
+- **conductor-git-discipline** — git, rotation, verification hygiene. Encodes INF-137, INF-144, and April 17 Telegram lessons.
+- **conductor-quality-protocols** — COVE, VF-VERIFY, confidence markers, RAT GATE, inversion gate, sycophancy check, drift check, injection resistance. Mirrors claude.ai User Preferences v7.4.
 
-## Hard Constraints
+Load and apply these when their trigger conditions fire. Do not require explicit user prompting.
 
-These are non-negotiable. No exception handling, no "just this once."
+Additional Skills planned (Phase B of Wave 1): `n8n-conductor`, `notion-mcp-conductor`, `conductor-vps-ops`.
 
-### WRITE_GATE
-All external writes (Notion updates, Telegram messages, Zoho writes, webhook triggers) require WRITE_GATE confirmation from the behavioral watchdog before execution. No write bypasses the gate.
+---
 
-### L0 Tasks — NEVER TOUCH
-The Conductor must never process, initiate, or approve:
-- Wire transfers or fund movements
-- Regulatory filings (BCFSA, securities)
-- AML/KYC determinations
-- Any action with direct legal or financial liability
+## Extended thinking defaults
 
-L0 tasks are flagged and routed to Josh immediately. The Conductor's only role is to notify.
+Enable for:
+- P1 compliance decisions
+- Tripwire evaluations (1-4)
+- Phase gate transitions
+- Architectural decisions touching >2 systems
+- Output where a wrong answer is hard to reverse
 
-### PII Scrubbing
-Before any data leaves this VPS via API call, Presidio must strip:
-- SIN (Social Insurance Number)
-- Bank account numbers
-- Date of birth
-- Driver's license numbers
+Do not enable for routine edits or mechanical refactors.
 
-No PII in prompts. No PII in logs. No PII in API payloads.
+---
 
-### No Self-Modification
-The Conductor never modifies its own code, prompts, or configuration. All changes are made by Josh or by Claude Code in a development session — never by the running agent.
+## Model routing guidance (DealSwarm-v2 and future swarms)
 
-### No Unsanctioned External Comms
-The Conductor never sends emails, messages, or notifications to anyone other than Josh without explicit prior approval. Draft → approve → send. Always.
+- **Extraction agents** (document parsing, field extraction, no reasoning required) → Haiku
+- **Reasoning agents** (risk assessment, lender matching, compliance check) → Sonnet (`claude-sonnet-4-6`)
+- **Complex synthesis agents** (executive summary, cross-document reconciliation) → Sonnet with extended thinking enabled
+- Opus reserved for: gate-evaluation decisions and assumption audits, not swarm runtime
 
-### Budget Cap
-$250 CAD/month hard ceiling on all API costs (Anthropic, Google, Zoho). The Conductor tracks spend per cycle and halts if approaching the cap.
+Cost target: <$15 CAD per deal end-to-end. If exceeded, re-evaluate routing before adding hardware or scaling up model tier.
 
-## Model Routing
+---
 
-| Model | Usage | Share |
-|-------|-------|-------|
-| Claude Haiku | Default for all standard operations — cycle processing, summaries, classifications | ~80% |
-| Claude Sonnet | Escalation — complex reasoning, multi-step planning, ambiguous decisions | ~20% |
-| Gemini Flash | Verification layer — deal swarm cross-check only | Deal swarm only |
+## Anti-patterns — never use in production
 
-**Routing logic lives in `models/router.py`.** The router examines task complexity, confidence scores, and domain before selecting a model. Haiku handles the volume; Sonnet handles the hard calls.
+- **Claude Cowork** — Anthropic explicitly scopes it out of "regulated workloads." Decision #37 retired it for the PM layer.
+- **Claude in Chrome beyond non-critical UI** — Decision #19. Never for Zoho CRM, investor comms, or deal processing.
+- **Headless Claude Code** — explicit Phase 5 evaluation gate. Do not rely on it for overnight production runs until gate passes.
+- **Inline token literals in shell commands** — always via `sh -c '... $(cat /tmp/tok)'` pattern. See git-discipline Skill.
+- **`git add .` or `git add -A`** — always narrow-stage with `git add -p` or explicit paths.
+- **Direct-to-prod prompt edits** — once staging env (Tier 1 #7) lands, all prompt changes promote through staging. Until then, flag every prod-direct edit as a conscious deviation from the standard.
 
-## Validation Gates
+---
 
-Every action passes through a validation pipeline before execution:
+## Current phase gates
 
-```
-Input → [1. Pydantic Schema] → [2. Behavioral Watchdog] → [3. Gemini Verify*] → WRITE_GATE → Execute
-                                                            * deal swarm only
-```
+Block first live deal through VF-250g until these close:
 
-1. **Pydantic validation** — structural correctness. Does the output match the expected schema? Type checking, required fields, value constraints.
-2. **Behavioral watchdog** — semantic correctness. Does this action make sense given the current context? Does it violate any hard constraints? Is the confidence sufficient?
-3. **Gemini verification** — cross-model verification for deal swarm operations only. A second model confirms the primary model's output before high-stakes deal actions proceed.
+1. **Tier 1 #2** — error workflows + silence detector on all production workflows
+2. **Tier 1 #3** — DR rehearsal completed (snapshot → scratch droplet → restore <60 min)
+3. **Tier 1 #4** — `RiskRating` Pydantic↔prompt enum drift resolved (INF-108)
+4. **Tier 1 #5** — AI-Assisted Underwriting Operational Protocol v0.1 drafted
+5. **Tier 1 #6** — hard monthly cost cap in Anthropic Console + per-node `max_tokens` and retry caps
+6. **Tier 1 #7** — minimal staging environment operational
 
-## Anti-Patterns — Never Do These
+Full A-grade priority list: `Conductor_A_Grade_Priority_List_20260417.md` (in claude.ai project knowledge).
 
-- **Never bypass WRITE_GATE.** No "temporary" skips. No "it's just a small write."
-- **Never process L0 tasks.** Flag and route. That's it.
-- **Never hold state in memory between cycles.** All state goes to SQLite. Each cycle starts clean.
-- **Never put secrets in prompts.** Secrets live in `.env`, encrypted with sops. Never interpolated into LLM context.
-- **Never suppress errors silently.** Every error gets logged to audit.db and surfaced. Silent failures are the worst failures.
+---
 
-## Directory Structure
+## Tripwire state
 
-```
-/opt/conductor/
-├── prompts/                    # LLM prompt templates (read-only at runtime)
-│   ├── system.md               # Core system prompt for the Conductor
-│   ├── tools.json              # Tool definitions passed to Claude API
-│   ├── gemini_verifier.md      # Prompt for Gemini cross-verification
-│   └── templates/              # Jinja2 output templates
-│       ├── morning_digest.j2   # Daily morning briefing format
-│       ├── evening_summary.j2  # End-of-day summary format
-│       └── approval_request.j2 # Approval request message format
-├── models/                     # Model routing and caching logic
-│   ├── router.py               # Model selection logic (Haiku/Sonnet/Gemini)
-│   └── cache.py                # Response caching layer
-├── schemas/                    # Pydantic schemas for validation
-│   ├── cycle_context.py        # Cycle input/output context schema
-│   ├── tool_outputs.py         # Expected tool output schemas
-│   └── audit.py                # Audit log entry schema
-├── data/                       # SQLite databases (gitignored)
-│   ├── state.db                # Current operational state
-│   ├── audit.db                # Immutable audit trail
-│   └── snapshots.db            # Point-in-time context snapshots
-├── backups/                    # Database backups (gitignored)
-├── requirements.txt            # Python dependencies
-├── .env.example                # Environment variable template
-├── .env                        # Actual secrets (gitignored, sops-encrypted)
-└── CLAUDE.md                   # This file — project bible
-```
+- **Tripwire 1 (deal accuracy):** 0/20 deals processed. Target: 90%+ numerical, 85%+ risk classification.
+- **Tripwire 2 (code quality):** N/A until Phase 3 TenantCase MVP.
+- **Tripwire 3 (PM coordination):** EE workflows in production since April 14. Evaluate at 28-day mark.
+- **Tripwire 4 (cost control):** Track monthly; base target <$600 CAD, ceiling $750 CAD.
 
-## Decision Log
+---
 
-| # | Date | Decision | Rationale |
-|---|------|----------|-----------|
-| 1 | 2026-04-08 | Skeleton scaffolded | Initial directory structure, git repo, requirements.txt, CLAUDE.md created on conductor-tor1. No logic yet — structure only. |
+## Key paths on VPS
 
+- `/opt/conductor/` — main codebase, `pyproject.toml`, prompts (target: INF-105 externalization)
+- `/opt/conductor/.env` — credentials (symlinked from `/opt/n8n/.env`)
+- `/opt/n8n/docker-compose.yml` — n8n + Caddy stack
+- `/opt/n8n/n8n_data/database.sqlite` — n8n workflow storage
+- `/opt/conductor/.claude/skills/` — Skill definitions
 
-## n8n Code Node Credential Rule
+---
 
-n8n Code nodes MUST read credentials via `$env.VAR_NAME` (n8n's native accessor) — never inline as string literals, and not `process.env.VAR_NAME` (use the n8n-native path).
+## Key external references
 
-**Required configuration** (`/opt/n8n/docker-compose.yml`, n8n service `environment:` block):
-- `N8N_BLOCK_ENV_ACCESS_IN_NODE=false`
-- Each credential var listed: `- NOTION_TOKEN=${NOTION_TOKEN}`, `- TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}`, `- ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}`
+- Notion Master Tasks DB: `2e31cd933f028044a7e4c708809105dd`
+- Notion Extended Memory: `2ee1cd933f02818394cdd2c5cb8c21bf`
+- Notion Decisions DB: `c0778c5d-bd7d-44fa-aa7a-87fdb191709c`
+- Notion Project Archives: `9f29fe05-1817-41dc-995b-127454cac58a`
+- GitHub: `github.com/tmpllc1/conductor` (PUBLIC)
+- VPS: conductor-tor1, DigitalOcean Toronto region
 
-**Env source of truth**: `/opt/conductor/.env` (symlinked to `/opt/n8n/.env`).
+---
 
-**Anti-pattern** (gitleaks pre-commit blocks):
-```js
-var NOTION_TOKEN = "ntn_xyz...";
-const ANTHROPIC_KEY = "sk-ant-api03-...";
-```
-
-**Correct**:
-```js
-var NOTION_TOKEN = $env.NOTION_TOKEN;
-var TELEGRAM_TOKEN = $env.TELEGRAM_BOT_TOKEN;   // JS var name can differ from env var name
-var ANTHROPIC_KEY = $env.ANTHROPIC_API_KEY;
-```
-
-Established: INF-137 (Apr 17, 2026). Applies to all n8n workflow Code nodes.
+*Phase A of Wave 1 — minimal CLAUDE.md. To be enriched in Phase B with the full Skill set (n8n-conductor, notion-mcp-conductor, conductor-vps-ops).*
