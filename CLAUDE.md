@@ -1,186 +1,183 @@
-# The Conductor — CLAUDE.md
+# The Conductor — AI Operating System
+## Updated: April 12, 2026
 
-## Identity
+## What This Is
 
-The Conductor is an autonomous AI operations agent for:
-- **Verifund Capital Corp** — BCFSA-licensed mortgage brokerage
-- **Verivest Growth Fund** — private mortgage investment fund
-- **Verilytics** — data analytics platform
-- **SBF (Sexy Bitch Fitness)** — coaching & bodybuilding business
-- **Software projects** — internal tooling and integrations
-
-Runs 24/7 on conductor-tor1 (68.183.194.128). Not a chatbot — an orchestration engine that executes cycles, routes decisions, and enforces safety gates.
-
-## Owner
-
-Josh Liberman — jliberman@verifundcapital.com
-
-All escalations, approvals, and L0 decisions route to Josh via Telegram.
-
-## Tech Stack
-
-| Component | Technology |
-|-----------|-----------|
-| Language | Python 3.12 |
-| HTTP client | httpx |
-| Messaging | python-telegram-bot |
-| AI SDK | anthropic (Claude API) |
-| Validation | pydantic |
-| Scheduling | APScheduler with SQLAlchemyJobStore |
-| Storage | SQLite × 3 (state.db, audit.db, snapshots.db) |
-| PII scrubbing | Presidio (analyzer + anonymizer) |
-| Secrets | sops (encrypted at rest) |
-
-## Architecture
-
-Three-layer stack. Each layer has a single responsibility:
-
-```
-┌─────────────────────────────────┐
-│  Notion (Coordination Brain)    │  Source of truth: tasks, specs,
-│  Dashboards, specs, cycle logs  │  decision logs, deal pipeline
-├─────────────────────────────────┤
-│  Conductor (Orchestration)      │  This codebase. Reads Notion,
-│  Python on conductor-tor1       │  routes models, enforces gates,
-│  Claude API + Telegram          │  writes audit logs
-├─────────────────────────────────┤
-│  n8n (Automation Backbone)      │  Webhook-driven workflows.
-│  Docker on same VPS             │  Zoho, Google Workspace, Notion
-│  https://conductor.verifundcapital.com  │  API integrations
-└─────────────────────────────────┘
-```
-
-**Data flow:** Notion → Conductor reads context → Conductor decides action → n8n executes via webhook → Conductor logs result → Notion updated.
-
-**Communication channels:**
-- **Telegram** — primary interface with Josh (approvals, digests, alerts)
-- **Notion** — reads task boards, writes cycle logs and decision records
-- **Zoho CRM** — reads/writes deal pipeline data via n8n
-- **Google Workspace** — calendar, email drafts, document access via n8n
-
-## Hard Constraints
-
-These are non-negotiable. No exception handling, no "just this once."
-
-### WRITE_GATE
-All external writes (Notion updates, Telegram messages, Zoho writes, webhook triggers) require WRITE_GATE confirmation from the behavioral watchdog before execution. No write bypasses the gate.
-
-### L0 Tasks — NEVER TOUCH
-The Conductor must never process, initiate, or approve:
-- Wire transfers or fund movements
-- Regulatory filings (BCFSA, securities)
-- AML/KYC determinations
-- Any action with direct legal or financial liability
-
-L0 tasks are flagged and routed to Josh immediately. The Conductor's only role is to notify.
-
-### PII Scrubbing
-Before any data leaves this VPS via API call, Presidio must strip:
-- SIN (Social Insurance Number)
-- Bank account numbers
-- Date of birth
-- Driver's license numbers
-
-No PII in prompts. No PII in logs. No PII in API payloads.
-
-### No Self-Modification
-The Conductor never modifies its own code, prompts, or configuration. All changes are made by Josh or by Claude Code in a development session — never by the running agent.
-
-### No Unsanctioned External Comms
-The Conductor never sends emails, messages, or notifications to anyone other than Josh without explicit prior approval. Draft → approve → send. Always.
-
-### Budget Cap
-$250 CAD/month hard ceiling on all API costs (Anthropic, Google, Zoho). The Conductor tracks spend per cycle and halts if approaching the cap.
-
-## Model Routing
-
-| Model | Usage | Share |
-|-------|-------|-------|
-| Claude Haiku | Default for all standard operations — cycle processing, summaries, classifications | ~80% |
-| Claude Sonnet | Escalation — complex reasoning, multi-step planning, ambiguous decisions | ~20% |
-| Gemini Flash | Verification layer — deal swarm cross-check only | Deal swarm only |
-
-**Routing logic lives in `models/router.py`.** The router examines task complexity, confidence scores, and domain before selecting a model. Haiku handles the volume; Sonnet handles the hard calls.
-
-## Validation Gates
-
-Every action passes through a validation pipeline before execution:
-
-```
-Input → [1. Pydantic Schema] → [2. Behavioral Watchdog] → [3. Gemini Verify*] → WRITE_GATE → Execute
-                                                            * deal swarm only
-```
-
-1. **Pydantic validation** — structural correctness. Does the output match the expected schema? Type checking, required fields, value constraints.
-2. **Behavioral watchdog** — semantic correctness. Does this action make sense given the current context? Does it violate any hard constraints? Is the confidence sufficient?
-3. **Gemini verification** — cross-model verification for deal swarm operations only. A second model confirms the primary model's output before high-stakes deal actions proceed.
-
-## Anti-Patterns — Never Do These
-
-- **Never bypass WRITE_GATE.** No "temporary" skips. No "it's just a small write."
-- **Never process L0 tasks.** Flag and route. That's it.
-- **Never hold state in memory between cycles.** All state goes to SQLite. Each cycle starts clean.
-- **Never put secrets in prompts.** Secrets live in `.env`, encrypted with sops. Never interpolated into LLM context.
-- **Never suppress errors silently.** Every error gets logged to audit.db and surfaced. Silent failures are the worst failures.
+AI project management system for Josh Liberman, a solo mortgage broker managing 8 business entities (Verifund Capital Corp, Verivest Growth Fund, Verilytics, SBF, Tailored Trader, and more). n8n workflows (Docker, same VPS) handle scheduling, monitoring, and integrations (Notion, Zoho, Google Workspace, Telegram). Python code on this VPS handles deal analysis schemas, PII scrubbing, model routing, and validation. The Conductor reads context from Notion, decides actions, and routes execution through n8n.
 
 ## Directory Structure
 
 ```
 /opt/conductor/
-├── prompts/                    # LLM prompt templates (read-only at runtime)
-│   ├── system.md               # Core system prompt for the Conductor
-│   ├── tools.json              # Tool definitions passed to Claude API
-│   ├── gemini_verifier.md      # Prompt for Gemini cross-verification
-│   └── templates/              # Jinja2 output templates
-│       ├── morning_digest.j2   # Daily morning briefing format
-│       ├── evening_summary.j2  # End-of-day summary format
-│       └── approval_request.j2 # Approval request message format
-├── models/                     # Model routing and caching logic
-│   ├── router.py               # Model selection logic (Haiku/Sonnet/Gemini)
-│   └── cache.py                # Response caching layer
-├── schemas/                    # Pydantic schemas for validation
-│   ├── cycle_context.py        # Cycle input/output context schema
-│   ├── tool_outputs.py         # Expected tool output schemas
-│   └── audit.py                # Audit log entry schema
-├── data/                       # SQLite databases (gitignored)
-│   ├── state.db                # Current operational state
-│   ├── audit.db                # Immutable audit trail
-│   └── snapshots.db            # Point-in-time context snapshots
-├── backups/                    # Database backups (gitignored)
+├── .env                        # API keys and config (chmod 600)
+├── .env.example                # Template for .env
+├── __init__.py                 # Package marker (v0.1.0)
+├── backup.sh                   # Weekly backup script (cron active)
+├── setup_dirs.sh               # Directory setup script
+├── CLAUDE.md                   # This file
 ├── requirements.txt            # Python dependencies
-├── .env.example                # Environment variable template
-├── .env                        # Actual secrets (gitignored, sops-encrypted)
-└── CLAUDE.md                   # This file — project bible
+├── config.py                   # .env loader + typed config constants
+├── sandbox.py                  # TEST_MODE routing + guard_write protection
+├── pii_scrubber.py             # PII redaction (SIN, bank#, DOB, DL#)
+├── test_pii_scrubber.py        # 27 tests for PII scrubber
+├── model_router.py             # LiteLLM wrapper for model selection
+├── models/
+│   ├── router.py               # Model selection logic (Fast/Balanced/Verify)
+│   └── cache.py                # Response caching layer
+├── schemas/
+│   ├── deal_swarm.py           # Deal analysis pipeline schemas (32 tests)
+│   ├── audit.py                # Audit log entry schema
+│   ├── cycle_context.py        # Cycle input/output context schema
+│   └── tool_outputs.py         # Expected tool output schemas
+├── prompts/
+│   ├── system.md               # Core system prompt
+│   ├── tools.json              # Tool definitions for Claude API
+│   ├── gemini_verifier.md      # Gemini cross-verification prompt
+│   ├── stage1_screener.md      # Deal swarm Stage 1: initial screening
+│   ├── stage2_extractor.md     # Deal swarm Stage 2: data extraction
+│   ├── stage2_risk.md          # Deal swarm Stage 2: risk assessment
+│   ├── stage2_lender.md        # Deal swarm Stage 2: lender matching
+│   ├── stage2_compliance.md    # Deal swarm Stage 2: compliance check
+│   └── templates/              # Jinja2 output templates
+├── templates/
+│   └── CLAUDE.md.template      # Dual-audience CLAUDE.md template
+├── claude-md/                  # Project-specific CLAUDE.md files
+├── n8n-workflows/              # n8n Code node scripts (reference only)
+├── tests/
+│   ├── test_deal_swarm_schemas.py  # 32 schema validation tests
+│   ├── test_config.py          # 7 config loading tests
+│   └── test_sandbox.py         # 14 sandbox routing tests
+├── data/                       # SQLite databases (gitignored)
+├── backups/                    # Database backups (gitignored)
+└── logs/                       # Application logs (gitignored)
 ```
 
-## Decision Log
+## Key Files
 
-| # | Date | Decision | Rationale |
-|---|------|----------|-----------|
-| 1 | 2026-04-08 | Skeleton scaffolded | Initial directory structure, git repo, requirements.txt, CLAUDE.md created on conductor-tor1. No logic yet — structure only. |
+| File | Purpose |
+|------|---------|
+| config.py | Loads .env, exports typed constants (API keys, DB IDs, TEST_MODE flag) |
+| sandbox.py | Routes API calls to test/production targets based on TEST_MODE. guard_write() blocks production writes in test mode |
+| pii_scrubber.py | Regex-based PII redaction for mortgage documents. Strips SIN, bank account#, DOB, DL#. Preserves names, addresses, income, credit scores, LTV |
+| model_router.py | LiteLLM wrapper for routing to Fast (Gemini Flash Lite), Balanced (Claude Sonnet), or Verify (Gemini Flash) tiers |
+| models/router.py | Model selection logic based on task complexity |
+| models/cache.py | Response caching layer |
+
+## Schemas
+
+schemas/deal_swarm.py contains Pydantic models for the 5-stage deal analysis pipeline:
+- ScreenerOutput — Stage 1: proceed/reject verdict with document inventory
+- ExtractorOutput — Stage 2: borrower info, property info, loan details extraction
+- RiskOutput — Stage 2: risk rating, factors, overall score (0-100)
+- LenderOutput — Stage 2: ranked lender matches with fit scores
+- ComplianceOutput — Stage 2: BCFSA/FINTRAC compliance checks
+- DealSwarmResult — Aggregates all stages with validation (proceed requires all Stage 2 outputs)
+
+Also: audit.py (audit log entries), cycle_context.py (cycle I/O), tool_outputs.py (tool output schemas).
+
+## Prompts
+
+| File | Deal Swarm Stage | Purpose |
+|------|-----------------|---------|
+| stage1_screener.md | Stage 1 | Initial deal screening — proceed or reject |
+| stage2_extractor.md | Stage 2 | Extract structured data from deal documents |
+| stage2_risk.md | Stage 2 | Assess risk factors and overall risk score |
+| stage2_lender.md | Stage 2 | Match deal to lenders by fit criteria |
+| stage2_compliance.md | Stage 2 | Check BCFSA and FINTRAC compliance |
+| gemini_verifier.md | Verification | Cross-model verification for deal decisions |
+| system.md | — | Core system prompt for the Conductor agent |
+| tools.json | — | Tool definitions passed to Claude API |
+
+## n8n Workflows
+
+10 active workflows running in Docker on this VPS (managed separately under /opt/n8n/):
+
+| # | Workflow | Trigger | Purpose |
+|---|----------|---------|---------|
+| 1 | Morning Briefing v3 | Daily 5:00 AM | Aggregates overnight changes, sends daily summary to Telegram |
+| 2 | Change Detection v3 | Every 5 min | Monitors Notion for task/deal changes, triggers state updates |
+| 3 | Rollover Handler v3 | Daily 5:30 PM | Rolls incomplete tasks to next day |
+| 4 | Evening Narrative v3 | Daily 5:35 PM | Sends end-of-day summary to Telegram |
+| 5 | Stale Sweep v2 | Monday 8:00 AM | Flags tasks with no activity for 7+ days |
+| 6 | Cross-Entity Balance v3 | Friday 4:30 PM | Reconciles task counts across all 8 entities |
+| 7 | Callback Handler v2 | Webhook /telegram-callback | Processes Telegram callback button responses |
+| 8 | Watch Conditions v1 | Monday 6:00 AM | Evaluates watch conditions on monitored items |
+| 9 | INFRA-CalendarSync-v1 | Every 15 min | Syncs Google Calendar events to Notion |
+| 10 | State Manager | Sub-workflow (concurrency=1) | Central state machine — called by other workflows |
+
+## Testing
+
+```bash
+source /opt/conductor/.venv/bin/activate
+cd /opt/conductor
+python -m pytest -v
+```
+
+Current test count: 80 passing (as of April 12, 2026)
+
+| Test File | Tests | Covers |
+|-----------|-------|--------|
+| test_pii_scrubber.py | 27 | SIN, bank account, DOB, DL scrubbing + false positive prevention |
+| tests/test_deal_swarm_schemas.py | 32 | All deal swarm Pydantic schemas, validation rules, edge cases |
+| tests/test_config.py | 7 | .env loading, TEST_MODE parsing, typed constant exports |
+| tests/test_sandbox.py | 14 | Notion/Zoho/Telegram routing, guard_write, is_production |
+
+## Development Rules
+
+- Always activate venv: source /opt/conductor/.venv/bin/activate
+- Always run pytest after changes
+- Never call external APIs from test code
+- TEST_MODE must be True for any local development
+- Never modify anything under /opt/n8n/ — that is the n8n Docker setup
+- Never restart Docker containers from this codebase
+- PII scrubber strips: SIN, bank account#, DOB, DL#
+- PII scrubber preserves: names, addresses, income, credit scores, LTV (needed for underwriting)
+- All secrets in .env — never hardcode API keys in code
+
+## Credentials
+
+All stored in .env (never committed, chmod 600):
+
+| Key | Service | Notes |
+|-----|---------|-------|
+| ANTHROPIC_API_KEY | Claude API | Balanced tier |
+| NOTION_TOKEN | Notion API | Integration token |
+| TELEGRAM_BOT_TOKEN | Telegram Bot API | @verifund_conductor_bot |
+| TELEGRAM_CHAT_ID | Telegram | Josh chat ID |
+| GEMINI_API_KEY | Google Gemini | Blank — not yet configured |
+| TEST_MODE | Conductor | false in production, true for development |
+
+Additional Notion IDs, LiteLLM model strings, SQLite paths, and n8n URLs also in .env.
 
 
 ## n8n Code Node Credential Rule
 
-n8n Code nodes MUST read credentials via `$env.VAR_NAME` (n8n's native accessor) — never inline as string literals, and not `process.env.VAR_NAME` (use the n8n-native path).
+n8n Code nodes MUST reference environment variables via `$env.VAR_NAME` (n8n's native accessor), never inline credentials as string literals. `$env.` is preferred over `process.env.` in n8n Code nodes — it is n8n's documented pattern and already in use across live workflows.
 
 **Required configuration** (`/opt/n8n/docker-compose.yml`, n8n service `environment:` block):
 - `N8N_BLOCK_ENV_ACCESS_IN_NODE=false`
-- Each credential var listed: `- NOTION_TOKEN=${NOTION_TOKEN}`, `- TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}`, `- ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}`
+- Each credential var listed: e.g. `- NOTION_TOKEN=${NOTION_TOKEN}`, `- TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}`, `- ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}`
 
-**Env source of truth**: `/opt/conductor/.env` (symlinked to `/opt/n8n/.env`).
+**Source of truth**: `/opt/conductor/.env` (symlinked to `/opt/n8n/.env`).
 
 **Anti-pattern** (gitleaks pre-commit blocks):
 ```js
 var NOTION_TOKEN = "ntn_xyz...";
-const ANTHROPIC_KEY = "sk-ant-api03-...";
+var ANTHROPIC_KEY = "sk-ant-api03-...";
 ```
 
 **Correct**:
 ```js
 var NOTION_TOKEN = $env.NOTION_TOKEN;
-var TELEGRAM_TOKEN = $env.TELEGRAM_BOT_TOKEN;   // JS var name can differ from env var name
+var TELEGRAM_TOKEN = $env.TELEGRAM_BOT_TOKEN;  // JS var name can differ from env var name
 var ANTHROPIC_KEY = $env.ANTHROPIC_API_KEY;
 ```
 
 Established: INF-137 (Apr 17, 2026). Applies to all n8n workflow Code nodes.
+
+## What Is Next
+
+Phase 2 (Target: April 21, 2026): Deal analysis swarm — n8n intake workflow triggers Claude API agents, output routes to Zoho CRM + Notion. Schemas and prompts are ready. Remaining work:
+- n8n deal intake workflow (webhook receives deal docs, triggers orchestrator)
+- Agent orchestrator Python code (runs 5-stage swarm, aggregates results)
+- Output routing (writes deal verdicts to Zoho CRM pipeline + Notion deal board)
