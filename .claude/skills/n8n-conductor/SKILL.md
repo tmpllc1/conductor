@@ -160,3 +160,102 @@ After every PUT/import:
 5. One-line verification — "Verified: PUT returned 200, versionId changed [old] → [new], test execution succeeded"
 
 No "workflow updated" without those four checks.
+
+## PUT /workflows/{id} — body filtering required (n8n 2.15.0)
+
+Tightens the existing `## Workflow authoring` and `## Verification` sections: the PUT body must be structurally complete (all of `name`, `nodes`, `connections`, `settings`) AND must have server-managed read-only fields stripped before sending. Leaving them in causes HTTP 400.
+
+Read-only fields to strip before every PUT:
+- `id`
+- `versionId`
+- `updatedAt`
+- `createdAt`
+- `triggerCount`
+- `shared`
+- `tags`
+- `homeProject`
+- `scopes`
+- `isArchived`
+
+GET-then-PUT round-trips must filter explicitly — never pass the GET response body through unchanged.
+
+Recommended jq filter:
+
+```bash
+jq '{name, nodes, connections, settings}' < workflow.json > workflow-put-body.json
+```
+
+Does NOT conflict with the existing "PUT complete new JSON" rule — that rule is about sending the full structure, not a partial/diff. Read-only field stripping is orthogonal.
+
+Source: INF-159, 2026-04-18.
+
+## /activate and /deactivate — verification signal
+
+These endpoints do NOT bump `updatedAt`. Verified in INF-111, 2026-04-18.
+
+Behavior on `versionId` under `/activate` and `/deactivate` is not yet verified. Until confirmed, do not rely on either `updatedAt` or `versionId` as the activation signal.
+
+Verification pattern for activation state changes:
+
+1. Check `active: true` (or `false`) in a follow-up GET response
+2. Observe `triggerCount` increment after the next scheduled trigger fires
+3. Confirm live trigger execution in the Executions log
+
+For structural PUT edits (not activation changes), `versionId` comparison per the existing `## Verification` section remains the correct signal.
+
+Source: INF-111, 2026-04-18.
+
+## Workflow execution paths on n8n 2.15.0
+
+There is no REST `/execute` endpoint. The only non-trigger execution paths are:
+
+1. Manual UI trigger (click "Execute Workflow" in the editor)
+2. CLI: `docker exec n8n-n8n-1 n8n execute --id=<workflow_id>`
+
+Monitor n8n release notes for a REST execution path; remove this constraint when it lands.
+
+### CLI execute --id ignores pinData
+
+The CLI path does not honor pinData set in the editor. Only manual UI trigger replays pinData.
+
+For scripted fixture replays against a pinned input:
+- Option A: build a throwaway caller workflow that hardcodes the fixture and calls the target via the executeWorkflow node
+- Option B: use manual UI trigger
+
+INF-160 will introduce a `_test_run: true` flag convention to make fixture replays work without disabling downstream nodes; update this subsection when it ships.
+
+### CLI port collision
+
+`n8n execute --id=...` attempts to spawn its own broker on the default internal port. This conflicts with the running n8n container.
+
+Workaround: retry with env override pointing the CLI broker to a free port:
+
+```bash
+docker exec -e N8N_PORT=5689 n8n-n8n-1 n8n execute --id=<workflow_id>
+```
+
+Unresolved reliably — if workaround fails, fall back to manual UI trigger.
+
+Source: INF-111, 2026-04-18.
+
+## Sub-Workflow `active` flag does NOT gate executeWorkflow calls
+
+The `active` property on a sub-workflow only gates its standalone triggers (Cron, Webhook, Schedule). If a parent workflow calls the sub-workflow via the executeWorkflow node, the call runs regardless of `active`.
+
+Consequence: deactivating a sub-workflow to "short-circuit" parent invocations does NOT work. The sub-workflow still executes.
+
+Correct pattern for test runs: add a `_test_run: true` flag convention on incoming data, branch inside the sub-workflow to skip external side effects (notifications, DB writes, Zoho writes). Planned for INF-160.
+
+Source: INF-159, 2026-04-18.
+
+## Fan-out notification nodes are siblings, not downstream
+
+In DealSwarm-v2, the Telegram Results node is a SIBLING of Route Outputs, not downstream. Disabling Route Outputs alone does not silence Telegram.
+
+Generalizes: any workflow with fan-out from a single source to multiple notification or persistence destinations must have each destination disabled independently during GT or regression runs.
+
+Pre-run check pattern:
+
+1. Identify all sibling nodes off the fan-out point
+2. Disable each sibling that produces an external side effect (Telegram, Gmail, Zoho, Notion writes)
+3. Re-enable after the run
