@@ -113,3 +113,59 @@ On any change that affects production state, state the verification before claim
 - Internal work (local edits, scratch scripts): one-line — "Verified: [what checked] → [what found] → [match Y/N]"
 - External/compliance/investor-facing: full proof table — Source → Expected → Found → Match
 - Never say "done" without the verification line. Never skip the verification even on small changes; that is exactly how INF-137 happened.
+
+## Diagnostic output parsing — know the delimiters
+
+Two misreads tonight (INF-158 diagnostic) cost real reasoning cycles. Both were about treating diagnostic output as something other than what it is.
+
+### `git check-ignore -v` is tab-delimited
+
+Output format: `<source>:<linenum>:<pattern><TAB><matched-path>`
+
+Example from INF-158:
+
+```
+.gitignore:5:/*	deal_swarm.py
+```
+
+Correct read:
+- Source: `.gitignore`
+- Line number: `5`
+- Pattern: `/*` (two characters — forward slash, asterisk)
+- Matched path: `deal_swarm.py`
+- Between pattern and matched-path: a literal TAB character
+
+Wrong read: treating `/*\tdeal_swarm.py` as a single malformed pattern containing an embedded tab. A pattern like that doesn't exist in `.gitignore`. The tab is the delimiter, not part of the pattern.
+
+Verify by printing `.gitignore` line N directly when in doubt:
+
+```bash
+sed -n '5p' .gitignore | cat -A
+```
+
+`cat -A` renders tab as `^I`. If `.gitignore` line 5 is `/*` (no `^I`), the tab seen in `check-ignore` output is the delimiter, not part of the file.
+
+### `git status --short` does NOT list ignored files
+
+An ignored file can be actively edited in the working tree and still be completely absent from `git status --short`. Absence from status is not evidence of absence from filesystem.
+
+To find files in the working tree that are NOT tracked and NOT ignored:
+
+```bash
+git status --short                    # tracked-modified + untracked-non-ignored
+git ls-files --others --exclude-standard   # untracked-non-ignored only
+git ls-files --others --ignored --exclude-standard   # ignored-only
+find /opt/conductor -name "TARGET" -not -path "*/.*"  # filesystem presence, independent of git
+```
+
+### Spec-writing implication
+
+When asserting expected working-tree state in a spec ("expected three-line working tree: two modified, one untracked"), distinguish explicitly between:
+
+- **tracked-modified** — shows in `git status --short` as `M`
+- **untracked-non-ignored** — shows as `??`
+- **ignored** — absent from `git status --short` entirely
+
+An ignored file being "dirty" is a meaningful state for local work, but it will never show in status and cannot be asserted via status checks alone.
+
+Source: INF-158 diagnostic, 2026-04-19.
